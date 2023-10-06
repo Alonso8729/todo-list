@@ -1,9 +1,10 @@
 :root {
     --light-grey: #f3f4f6;
-    --dark-grey: #a7acb5;
+    --dark-grey: #81848d;
     --white: #fff;
-    --dark-pink: #fd144e;
-    --light-pink: #e5589f;
+    --dark-teal: #0d9488;
+    --light-teal: #2dd4bf;
+    --tooltip-bg: #2d2c2c;
 }
 
 /*GENERAL*/
@@ -38,12 +39,13 @@ a {
 /*HEADER*/
 header {
     padding: 1.5rem 2rem;
-    background: linear-gradient(to right, var(--dark-pink), var(--light-pink));
+    background: linear-gradient(to right, var(--dark-teal), var(--light-teal));
     color: white;
     font-size: 2rem;
 }
 
 /*NAV*/
+
 #sidebar {
     background-color: var(--light-grey);
     height: 100%;
@@ -57,6 +59,7 @@ header {
     background-color: var(--white);
 }
 
+/*MENU-LINKS*/
 
 
 .nav-menu {
@@ -68,16 +71,74 @@ link,
 .nav-menu-link {
     color: var(--dark-grey);
     margin-bottom: 1.5rem;
-    padding: 6px 10px;
+    padding: 8px 10px;
     border-radius: 5px;
 
 }
 
 .icon-link {
-    color: var(--dark-pink);
+    color: var(--dark-teal);
 }
 
 .nav-menu-link p {
     display: inline-block;
     vertical-align: middle;
+}
+
+/*Projects*/
+.projects-title {
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--dark-grey);
+}
+
+.tooltip-icon {
+    color: var(--dark-teal);
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}
+
+.nav-projects {
+    color: var(--dark-grey);
+}
+
+.tooltip-text {
+    font-size: 16px;
+    visibility: hidden;
+    background-color: var(--tooltip-bg);
+    color: var(--white);
+    border-radius: 6px;
+    margin-left: -60px;
+    width: 135px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    transform: translateX(-50%);
+    opacity: 0;
+    padding: 10px;
+    text-align: center;
+    transition: opacity .3s;
+    text-transform: none;
+    text-wrap: nowrap;
+    font-weight: 100;
+    font-family: 'Roboto', sans-serif;
+}
+
+.tooltip-icon .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 85%;
+    margin-left: -4px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--tooltip-bg) transparent transparent transparent;
+
+}
+
+.tooltip-icon:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+
 }
