@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    <!--Header-->
     <header>
         <p class="logo">
             <i class="fa-regular fa-calendar-check"></i>
@@ -20,7 +21,9 @@
         </p>
     </header>
 
+    <!--NAV-->
     <nav id="sidebar">
+        <!--NAV-MENU-->
         <div class="nav-menu-link">
             <a href="#" class="link nav-menu-link hovering flex" data-index="0">
                 <i class="fa-regular fa-calendar-days padding-right icon-link"></i>
@@ -47,9 +50,19 @@
                 </p>
             </a>
         </div>
-
+        <!--NAV-PROJECTS-->
         <div class="nav-projects">
-
+            <div class="projects-title flex">
+                <p>
+                    Project (<span id="projects-counter"></span>)
+                </p>
+                <i class="fa-solid fa-circle-plus tooltip-icon">
+                    <span class="add-project tooltip-text">Add New Project</span>
+                </i>
+            </div>
+            <div class="projects-list">
+                <!--Added using JS-->
+            </div>
         </div>
     </nav>
 
