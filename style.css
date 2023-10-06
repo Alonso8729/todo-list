@@ -152,6 +152,20 @@ link,
     opacity: 1;
 }
 
+/*FOOTER*/
+
+footer {
+    padding: 10px;
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--dark-grey);
+}
+
+footer span {
+    color: var(--dark-teal);
+    background-color: var(--light-grey);
+}
+
+
 /*MODALS*/
 
 @keyframes fadeIn {
