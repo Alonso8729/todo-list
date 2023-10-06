@@ -9,7 +9,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="icon" href="./images/favicon.svg" type="image/svg+xml">
     <script src="https://kit.fontawesome.com/1398e6fc0a.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -31,22 +33,28 @@
                     All
                 </p>
             </a>
-            <a href="#" class="link nav-menu-link flex hovering" data-index="1">
+            <a href="#" class="link nav-menu-link flex hovering" data-index="1" data-title="today">
                 <i class="fa-solid fa-calendar-day padding-right icon-link"></i>
                 <p class="link-text">
                     Today
                 </p>
             </a>
-            <a href="#" class="link nav-menu-link flex hovering" data-index="2">
+            <a href="#" class="link nav-menu-link flex hovering" data-index="2" data-title="week">
                 <i class="fa-solid fa-calendar-week padding-right icon-link"></i>
                 <p class="link-text">
                     Week
                 </p>
             </a>
-            <a href="#" class="link nav-menu-link flex hovering" data-index="3">
+            <a href="#" class="link nav-menu-link flex hovering" data-index="3" data-title="important">
                 <i class="fa-solid fa-star padding-right icon-link"></i>
                 <p class="link-text">
                     Important
+                </p>
+            </a>
+            <a href="#" class="link nav-menu-link flex hovering" data-index="4" data-title="completed">
+                <i class="fa-regular fa-calendar-check padding-right icon-link"></i>
+                <p class="link-text">
+                    Completed
                 </p>
             </a>
         </div>
@@ -69,6 +77,25 @@
     <main class="main">
 
     </main>
+
+    <!--Modal-->
+    <div id="modal">
+        <div class="modal-card" id="project-input-modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Add Project</h2>
+                <i class="fa-solid fa-xmark" id="close-btn"></i>
+            </div>
+            <div class="modal-content flex">
+                <label for="title">Title<span id="title-star">*</span></label>
+                <input type="text" name="title" id="title" required>
+            </div>
+            <div class="modal-buttons flex">
+                <button class="cancel-btn">Cancel</button>
+                <button class="add-btn">Add</button>
+            </div>
+        </div>
+    </div>
+
 
     <script src="main.js"></script>
 </body>
