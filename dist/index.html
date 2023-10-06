@@ -79,19 +79,21 @@
     </main>
 
     <!--Modal-->
-    <div id="modal">
+    <div id="modal" class="modal ">
         <div class="modal-card" id="project-input-modal">
             <div class="modal-header">
                 <h2 class="modal-title">Add Project</h2>
-                <i class="fa-solid fa-xmark" id="close-btn"></i>
+                <i class="fa-solid fa-xmark hovering" id="close-btn"></i>
             </div>
             <div class="modal-content flex">
                 <label for="title">Title<span id="title-star">*</span></label>
                 <input type="text" name="title" id="title" required>
+                <p class="empty-input-error hide">Please fill out this field.</p>
+
             </div>
             <div class="modal-buttons flex">
-                <button class="cancel-btn">Cancel</button>
-                <button class="add-btn">Add</button>
+                <button class="cancel-btn hovering">Cancel</button>
+                <button class="add-btn hovering">Add</button>
             </div>
         </div>
     </div>
