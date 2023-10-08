@@ -5,6 +5,7 @@
     --white: #fff;
     --dark-teal: #0d9488;
     --light-teal: #2dd4bf;
+    --selected: #1fbaa5;
     --tooltip-bg: #2d2c2c;
     --title-star: #dc2626;
 }
@@ -71,6 +72,17 @@ header {
 
 /*MENU-LINKS*/
 
+#sidebar .selected-link {
+    background-color: var(--selected);
+}
+
+#sidebar .selected-link:hover {
+    background-color: var(--dark-teal);
+}
+
+#sidebar .select {
+    color: var(--white);
+}
 
 .nav-menu {
     background-color: var(--white);
@@ -83,7 +95,11 @@ link,
     margin-bottom: 1.5rem;
     padding: 8px 10px;
     border-radius: 5px;
+    border: 1px solid transparent;
+}
 
+.link:hover {
+    border: 1px solid var(--selected);
 }
 
 .icon-link {
@@ -150,6 +166,7 @@ link,
 .tooltip-icon:hover .tooltip-text {
     visibility: visible;
     opacity: 1;
+    transition: 0.5s;
 }
 
 /*FOOTER*/
@@ -158,6 +175,12 @@ footer {
     padding: 10px;
     margin-top: 1.5rem;
     border-top: 1px solid var(--dark-grey);
+    font-size: 1rem;
+    text-align: center;
+}
+
+footer p {
+    color: var(--dark-grey);
 }
 
 footer span {
@@ -205,11 +228,10 @@ footer span {
     position: relative;
     margin: 15% auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-
 }
 
 #modal input[type="text"] {
-    padding: 6px 0;
+    padding: 6px;
     border-radius: 5px;
     border: 1px solid var(--dark-grey);
 }
