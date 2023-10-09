@@ -16,7 +16,7 @@
 
 <body>
     <!--Header-->
-    <header>
+    <header class="mixed-teal">
         <p class="logo">
             <i class="fa-regular fa-calendar-check"></i>
             CheckMate
@@ -27,9 +27,9 @@
     <nav id="sidebar">
         <!--NAV-MENU-->
         <div class="nav-menu-link">
-            <a href="#" class="link nav-menu-link hovering flex" data-index="0">
-                <i class="fa-regular fa-calendar-days padding-right icon-link"></i>
-                <p class="link-text">
+            <a href="#" class="link nav-menu-link hovering flex selected-link" data-index="0">
+                <i class="fa-regular fa-calendar-days padding-right icon-link select"></i>
+                <p class="link-text select">
                     All
                 </p>
             </a>
@@ -64,7 +64,7 @@
                 <p>
                     Project (<span id="projects-counter"></span>)
                 </p>
-                <i class="fa-solid fa-circle-plus tooltip-icon">
+                <i class="fa-solid fa-circle-plus plus-icon">
                     <span class="add-project tooltip-text">Add New Project</span>
                 </i>
             </div>
@@ -77,26 +77,46 @@
         </footer>
     </nav>
 
-    <main class="main">
+    <main id="main">
+        <!--MAIN TITLE-->
+        <div class="main-title-ctn flex">
+            <h1 class="main-title-text">Example</h1>
+        </div>
 
+        <!--TASKS-->
+        <div class="tasks-container flex">
+            <p>Tasks(<span id="tasks-counter"></span>)</p>
+            <i class="fa-solid fa-circle-plus plus-icon">
+                <span class="add-project tooltip-text">Add New Task</span>
+            </i>
+        </div>
+
+        <div class="tasks-list">
+            < </div>
     </main>
 
     <!--Modal-->
-    <div id="modal" class="modal hide">
+    <div id="modal" class="modal ">
         <div class="modal-card" id="project-input-modal">
-            <div class="modal-header">
-                <h2 class="modal-title">Add Project</h2>
+            <div class="modal-header mixed-red">
+                <h2 class="modal-title">Delete Project</h2>
                 <i class="fa-solid fa-xmark hovering" id="close-btn"></i>
             </div>
             <div class="modal-content flex">
-                <label for="title">Title<span id="title-star">*</span></label>
-                <input type="text" name="title" id="title" required>
-                <p class="empty-input-error hide">Please fill out this field.</p>
+                <!--Delete Project-->
+                <p>Are you sure you want to delete this project?<br><br></p>
+                <p>This action can not be undone</p>
 
+                <!--Add Project Modal-->
+                <div class="add-project-modal hide">
+                    <label for="title">Title<span id="title-star">*</span></label>
+                    <input type="text" name="title" id="title" class="padding-right" autocomplete="off" required>
+                    <p class="empty-input-error">Please fill out this field.</p>
+                </div>
             </div>
             <div class="modal-buttons flex">
-                <button class="cancel-btn hovering">Cancel</button>
-                <button class="add-btn hovering">Add</button>
+                <button class="cancel-delete hovering">Cancel</button>
+                <button class="delete-btn hovering">Delete</button>
             </div>
         </div>
     </div>
