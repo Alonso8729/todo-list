@@ -10,6 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="icon" href="./images/favicon.svg" type="image/svg+xml">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/1398e6fc0a.js" crossorigin="anonymous"></script>
 
 </head>
@@ -70,6 +73,20 @@
             </div>
             <div class="projects-list">
                 <!--Added using JS-->
+                <div class="project-link flex">
+                    <p class="project-link-title">Coding</p>
+                    <div class="project-link-icons">
+                        <i class="fa-regular fa-pen-to-square"></i>
+                        <i class="fa-solid fa-trash"></i>
+                    </div>
+                </div>
+                <div class="project-link flex">
+                    <p class="project-link-title">Cleaning</p>
+                    <div class="project-link-icons">
+                        <i class="fa-regular fa-pen-to-square"></i>
+                        <i class="fa-solid fa-trash"></i>
+                    </div>
+                </div>
             </div>
         </div>
         <footer>
@@ -92,31 +109,59 @@
         </div>
 
         <div class="tasks-list">
-            < </div>
+
+        </div>
     </main>
 
     <!--Modal-->
-    <div id="modal" class="modal ">
+    <div id="modal" class="modal hide">
         <div class="modal-card" id="project-input-modal">
-            <div class="modal-header mixed-red">
-                <h2 class="modal-title">Delete Project</h2>
+            <div class="modal-header mixed-teal">
+                <h2 class="modal-title">Add Task</h2>
                 <i class="fa-solid fa-xmark hovering" id="close-btn"></i>
             </div>
             <div class="modal-content flex">
                 <!--Delete Project-->
-                <p>Are you sure you want to delete this project?<br><br></p>
-                <p>This action can not be undone</p>
+                <p class="delete-project-content hide">Are you sure you want to delete <strong><span
+                            id="project-title-delete"></span></strong>?<br><br>
+                    This action cannot be undone</p>
+                <!--Delete Task-->
+                <p class="delete-task-content hide">Are you sure you want to delete <strong><span
+                            id="task-title-delete"></span></strong>?<br><br>
+                    This action cannot be undone</p>
 
                 <!--Add Project Modal-->
-                <div class="add-project-modal hide">
+                <div class="add-modal ">
                     <label for="title">Title<span id="title-star">*</span></label>
-                    <input type="text" name="title" id="title" class="padding-right" autocomplete="off" required>
-                    <p class="empty-input-error">Please fill out this field.</p>
+                    <input type="text" class="form-input" name="title" id="title" autocomplete="off" required>
+                    <p class="empty-input-error hide">Please fill out this field.</p>
+                </div>
+                <div class="modal-task-div">
+                    <div class="task-description-div flex">
+                        <label for="description">Description</label>
+                        <textarea cols="30" rows="3"></textarea>
+                    </div>
+                    <div class="task-due-date-div flex">
+                        <label for="date">Due Date</label>
+                        <input type="date" id="due-date">
+                    </div>
+                    <div class="task-priority">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupSelect01">Priority</label>
+                            <select class="form-select" id="inputGroupSelect01">
+                                <option disabled selected>How important is your task?</option>
+                                <option value="1">Low Priority</option>
+                                <option value="2">Medium Priority</option>
+                                <option value="3">High Priority</option>
+                            </select>
+                        </div>
+
+                    </div>
                 </div>
             </div>
             <div class="modal-buttons flex">
-                <button class="cancel-delete hovering">Cancel</button>
-                <button class="delete-btn hovering">Delete</button>
+                <button class="cancel-add hovering">Cancel</button>
+                <button class="add-btn hovering">Add</button>
             </div>
         </div>
     </div>
