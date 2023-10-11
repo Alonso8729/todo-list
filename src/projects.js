@@ -1,4 +1,4 @@
-import dom from './dom';
+import dom from './dom.js';
 
 const projects = (() => {
     let projectsList = [];
@@ -52,14 +52,19 @@ const projects = (() => {
 
     function deleteProject(index) {
         projectsList.splice(index, 1);
-
         dom.showProjects();
+    }
+
+    function editProject(index, title) {
+        projectsList[index].title = title;
+        dom.showProjects();
+        dom.selectLink()
     }
 
 
     return {
-        projectsList, addProject, deleteProject
-    }
+        projectsList, addProject, deleteProject, editProject
+    };
 
 })();
 
