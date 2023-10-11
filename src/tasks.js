@@ -26,6 +26,18 @@ const tasks = (() => {
         dom.showTasks('all');
     }
 
+    function editTask(title, description, date, priority, projectIndex, taskIndex) {
+        projects.projectsList[projectIndex].task[taskIndex].title = title;
+        projects.projectsList[projectIndex].task[taskIndex].description = description;
+        projects.projectsList[projectIndex].task[taskIndex].date = date;
+        projects.projectsList[projectIndex].task[taskIndex].priority = priority;
+
+        dom.showTasks('all');
+    }
+
+    return {
+        addTask, deleteTask, editTask
+    };
 
 })();
 
