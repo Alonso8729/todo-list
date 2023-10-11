@@ -65,8 +65,9 @@ select {
 header {
     padding: 1.5rem 2rem;
     color: white;
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
+
 
 /*NAV*/
 
@@ -188,11 +189,10 @@ link,
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    margin-bottom: 1rem;
     padding: 8px 10px;
 }
 
-.projects-list:first-child {
+.projects-list .project-link:first-child {
     margin-top: 1rem;
 }
 
@@ -203,6 +203,18 @@ link,
     border-radius: 5px;
     border: 1px solid transparent;
     background-color: var(--white);
+}
+
+.project-link:hover {
+    border: 1px solid var(--dark-teal);
+}
+
+.project-link i {
+    color: var(--dark-teal);
+}
+
+.project-link-icons {
+    gap: 5px;
 }
 
 /*FOOTER*/
@@ -438,6 +450,18 @@ footer span {
     justify-content: center;
     padding: 1.5rem;
     color: var(--dark-grey);
+    align-items: center;
+
+    gap: 10px;
+}
+
+.main-title-icon {
+    font-size: 1.5rem;
+    color: var(--selected);
+}
+
+.main-title-text {
+    font-weight: lighter;
 }
 
 .tasks-container {
@@ -447,5 +471,32 @@ footer span {
     justify-content: space-between;
     font-size: 1.3rem;
     color: var(--dark-grey);
+    font-weight: 100;
     border-bottom: 1px solid var(--dark-grey);
+}
+
+.task-div {
+    margin-left: 300px;
+    justify-content: space-between;
+    max-width: 1000px;
+    padding: 20px 10px 20px 20px;
+    color: var(--dark-grey);
+    border-bottom: 1px solid var(--light-grey);
+}
+
+.task-left-side {
+    gap: 5px;
+}
+
+.task-right-side {
+    gap: 7px;
+}
+
+.task-due-date {
+    font-size: 14px;
+    color: var(--dark-teal);
+}
+
+.completed {
+    text-decoration: line-through;
 }
