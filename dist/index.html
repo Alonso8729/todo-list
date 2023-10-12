@@ -69,7 +69,7 @@
                 <p>
                     Project (<span id="projects-counter"></span>)
                 </p>
-                <i class="fa-solid fa-circle-plus plus-icon">
+                <i class="fa-solid fa-circle-plus plus-icon add-project-icon">
                     <span class="add-project tooltip-text">Add New Project</span>
                 </i>
             </div>
@@ -92,7 +92,7 @@
         <!--TASKS-->
         <div class="tasks-container flex">
             <p>Tasks (<span id="tasks-counter"></span>)</p>
-            <i id="add-task" class="fa-solid fa-circle-plus plus-icon hide">
+            <i id="add-task" class="fa-solid fa-circle-plus add-task-icon plus-icon hide">
                 <span class="add-project tooltip-text">Add New Task</span>
             </i>
         </div>
@@ -106,7 +106,7 @@
     <div id="modal" class="modal hide">
         <div class="modal-card" id="project-input-modal">
             <div class="modal-header mixed-teal">
-                <h2 class="modal-title">Add Task</h2>
+                <h2 class="modal-title"></h2>
                 <i class="fa-solid fa-xmark pointer" id="close-btn"></i>
             </div>
             <div class="modal-content flex">
@@ -149,8 +149,9 @@
                 </div>
             </div>
             <div class="modal-buttons flex">
-                <button class="cancel-add pointer">Cancel</button>
-                <button class="add-btn pointer">Add</button>
+                <button type="button" class="cancel-btn pointer">Cancel</button>
+                <button type="button" class="add-btn pointer ">Add</button>
+                    
             </div>
         </div>
     </div>
