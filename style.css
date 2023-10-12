@@ -12,6 +12,8 @@
     --selected: #1fbaa5;
     --tooltip-bg: #2d2c2c;
     --title-star: #dc2626;
+    --yellow: rgb(252, 252, 34);
+    --green: rgb(12, 179, 12);
 }
 
 /*GENERAL*/
@@ -26,7 +28,7 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-.hovering:hover {
+.pointer:hover {
     cursor: pointer;
 }
 
@@ -59,6 +61,25 @@ select {
 
 .mixed-red {
     background: var(--linear-gradient-red);
+}
+
+.high-priority {
+    color: var(--dark-red);
+}
+
+.medium-priority {
+    color: var(--yellow);
+}
+
+.low-priority {
+    color: var(--green);
+}
+
+/*icons*/
+.fa-trash-can:hover,
+.fa-pen-to-square:hover,
+fa-circle-info:hover {
+    font-size: 1.3rem;
 }
 
 /*HEADER*/
@@ -203,6 +224,11 @@ link,
     border-radius: 5px;
     border: 1px solid transparent;
     background-color: var(--white);
+}
+
+.leftProjectDiv {
+    display: flex;
+    gap: 5px;
 }
 
 .project-link:hover {
