@@ -10,6 +10,9 @@ const dom = (() => {
     const addTaskBtn = document.getElementById('add-task');
     const taskCounter = document.getElementById('tasks-counter');
     const tasksList = document.querySelector('.tasks-list');
+    const modal = document.querySelector('.modal');
+    const modalTitle = document.querySelector('.modal-title');
+    const modalTitleError = document.querySelector('.empty-input-error');
 
     function showProjects() {
         const projectCounter = document.getElementById('projects-counter');
@@ -29,7 +32,7 @@ const dom = (() => {
             const editIcon = document.createElement('i');
             const trashIcon = document.createElement('i');
 
-            projectLink.classList.add('link', 'project-link', 'flex', 'pointer', 'project-element');
+            projectLink.classList.add('link', 'project-link', 'flex', 'pointer', 'project-element', 'select');
             projectLink.setAttribute('href', '#');
             projectLink.setAttribute('data-link-index', i);
             projectsList.appendChild(projectLink);
@@ -37,25 +40,25 @@ const dom = (() => {
 
 
             //Assign and append project icon to leftProjectLink
-            projectIcon.classList.add('fa-solid', 'fa-list', 'project-element');
+            projectIcon.classList.add('fa-solid', 'fa-list', 'project-element', 'select');
             leftProjectDiv.appendChild(projectIcon);
 
             //Assign project title and append to leftProjectLink
-            projectTitle.classList.add('project-link-title', 'project-element');
+            projectTitle.classList.add('project-link-title', 'project-element', 'select');
             projectTitle.textContent = projects.projectsList[i].title;
             leftProjectDiv.appendChild(projectTitle)
 
-            leftProjectDiv.classList.add('leftProjectDiv', 'project-element');
+            leftProjectDiv.classList.add('leftProjectDiv', 'project-element', 'select');
             projectLink.appendChild(leftProjectDiv);
 
             //Add class and append projectIconsDiv
-            projectIconsDiv.classList.add('project-link-icons', 'flex', 'project-element');
+            projectIconsDiv.classList.add('project-link-icons', 'flex', 'project-element', 'select');
             projectLink.appendChild(projectIconsDiv);
 
             //Add icons to icons div
-            editIcon.classList.add('fa-regular', 'fa-pen-to-square', 'project-element');
+            editIcon.classList.add('fa-regular', 'fa-pen-to-square', 'project-element', 'project-btn', 'select');
             projectIconsDiv.appendChild(editIcon);
-            trashIcon.classList.add('fa-regular', 'fa-trash-can', 'project-element');
+            trashIcon.classList.add('fa-regular', 'fa-trash-can', 'project-element', 'project-btn', 'select');
             projectIconsDiv.appendChild(trashIcon);
         }
     }
@@ -79,6 +82,20 @@ const dom = (() => {
 
 
         document.title = `Todo List - ${mainTitleText.textContent}`;
+    }
+
+    function changeMainTitle(target, index) {
+        mainTitleIcon.className = "";
+        //Clicked on project link
+        if (target.classList.contains('project-element')) {
+            mainTitleIcon.classList.add('fa-solid', 'fa-list');
+            mainTitleText.textContent = projects.projectsList[index].title;
+            document.title = `Todo List - ${mainTitleText.textContent}`;
+        }
+        //Clicked on menu Link
+        else if (target.classList.contains('menu-element')) {
+            showMainTitle(index);
+        }
     }
 
     function showTasks(menuCategory, projectIndexStart, projectIndexEnd) {
@@ -137,9 +154,9 @@ const dom = (() => {
                 }
                 taskRightDiv.classList.add('task-right-side', 'flex');
                 dueDate.classList.add('task-due-date');
-                editIcon.classList.add('fa-regular', 'fa-pen-to-square');
-                trashIcon.classList.add('fa-regular', 'fa-trash-can');
-                infoIcon.classList.add('fa-solid', 'fa-circle-info');
+                editIcon.classList.add('fa-regular', 'fa-pen-to-square', 'task-icon');
+                trashIcon.classList.add('fa-regular', 'fa-trash-can', 'task-icon');
+                infoIcon.classList.add('fa-solid', 'fa-circle-info', 'task-icon');
 
                 //Add circle color class based on priority
                 if (projects.projectsList[i].tasks[j].priority === 'high') {
@@ -190,8 +207,16 @@ const dom = (() => {
     }
 
     function handleModal(modalStatus, modalTitle, modalFunction, projectIndex, taskIndex) {
+        const modalHeader = document.querySelector('.modal-header');
+        const cancelBtn = document.querySelector('.cancel-btn');
+        const confirmBtn = document.querySelector('.confirm-btn');
+
+
+
+
 
     }
+
 
     function selectLink(target, index, action) {
         const projectLinks = document.querySelectorAll('.project-link');
@@ -222,7 +247,7 @@ const dom = (() => {
         //Clicked anywhere on project
         if (target.classList.contains('project-element')) {
             addTaskBtn.classList.remove('hide');
-            //getTast()
+            //getTask()
             //Clicked on one of the icons
             if (target.classList.contains('fa-list') || target.classList.contains('fa-trash') || target.classList.contains('fa-pen-to-square')) {
                 target.parentElement.classList.add('selected-link');
@@ -238,7 +263,7 @@ const dom = (() => {
     }
 
     return {
-        showProjects, showMainTitle, handleModal, showTasks, selectLink
+        showProjects, showMainTitle, handleModal, showTasks, selectLink, changeMainTitle
     };
 })();
 
