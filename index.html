@@ -30,32 +30,34 @@
     <nav id="sidebar">
         <!--NAV-MENU-->
         <div class="nav-menu-link">
-            <a href="#" class="link nav-menu-link hovering flex selected-link" data-link-index="0">
-                <i class="fa-regular fa-calendar-days padding-right icon-link select"></i>
-                <p class="link-text select">
+            <a href="#" class="link nav-menu-link pointer flex " data-link-index="0">
+                <i class="fa-regular fa-calendar-days padding-right icon-link"
+                    data-icon="fa-regular fa-calendar-days"></i>
+                <p class="link-text">
                     All
                 </p>
             </a>
-            <a href="#" class="link nav-menu-link flex hovering" data-link-index="1" data-title="today">
-                <i class="fa-solid fa-calendar-day padding-right icon-link"></i>
+            <a href="#" class="link nav-menu-link flex pointer" data-link-index="1" data-title="today">
+                <i class="fa-solid fa-calendar-day padding-right icon-link" data-icon="fa-solid fa-calendar-day"></i>
                 <p class="link-text">
                     Today
                 </p>
             </a>
-            <a href="#" class="link nav-menu-link flex hovering" data-link-index="2" data-title="week">
-                <i class="fa-solid fa-calendar-week padding-right icon-link"></i>
+            <a href="#" class="link nav-menu-link flex pointer" data-link-index="2" data-title="week">
+                <i class="fa-solid fa-calendar-week padding-right icon-link " data-icon="fa-solid fa-calendar-week"></i>
                 <p class="link-text">
                     Week
                 </p>
             </a>
-            <a href="#" class="link nav-menu-link flex hovering" data-link-index="3" data-title="important">
-                <i class="fa-solid fa-star padding-right icon-link"></i>
+            <a href="#" class="link nav-menu-link flex pointer" data-link-index="3" data-title="important">
+                <i class="fa-solid fa-star padding-right icon-link" data-icon="fa-solid fa-star"></i>
                 <p class="link-text">
                     Important
                 </p>
             </a>
-            <a href="#" class="link nav-menu-link flex hovering" data-link-index="4" data-title="completed">
-                <i class="fa-regular fa-calendar-check padding-right icon-link"></i>
+            <a href="#" class="link nav-menu-link flex pointer" data-link-index="4" data-title="completed">
+                <i class="fa-regular fa-calendar-check padding-right icon-link"
+                    data-icon="fa-regular fa-calendar-check"></i>
                 <p class="link-text">
                     Completed
                 </p>
@@ -90,7 +92,7 @@
         <!--TASKS-->
         <div class="tasks-container flex">
             <p>Tasks (<span id="tasks-counter"></span>)</p>
-            <i class="fa-solid fa-circle-plus plus-icon">
+            <i id="add-task" class="fa-solid fa-circle-plus plus-icon hide">
                 <span class="add-project tooltip-text">Add New Task</span>
             </i>
         </div>
@@ -105,7 +107,7 @@
         <div class="modal-card" id="project-input-modal">
             <div class="modal-header mixed-teal">
                 <h2 class="modal-title">Add Task</h2>
-                <i class="fa-solid fa-xmark hovering" id="close-btn"></i>
+                <i class="fa-solid fa-xmark pointer" id="close-btn"></i>
             </div>
             <div class="modal-content flex">
                 <!--Delete Project-->
@@ -147,8 +149,8 @@
                 </div>
             </div>
             <div class="modal-buttons flex">
-                <button class="cancel-add hovering">Cancel</button>
-                <button class="add-btn hovering">Add</button>
+                <button class="cancel-add pointer">Cancel</button>
+                <button class="add-btn pointer">Add</button>
             </div>
         </div>
     </div>
