@@ -35,8 +35,6 @@ const projects = (() => {
         projectsList = JSON.parse(localStorage.getItem('projects'));
     }
 
-
-
     class Project {
         constructor(title) {
             this.title = title;
