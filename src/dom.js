@@ -1,12 +1,15 @@
 
-//import { format, parseISO, differenceInDays } from 'date-fns';
+import { format, parseISO, differenceInDays } from 'date-fns';
 import projects from './projects.js';
 
 
 const dom = (() => {
+    //variable declaration and assignment
     const mainTitleText = document.querySelector('.main-title-text');
     const mainTitleIcon = document.querySelector('.main-title-icon');
     const addTaskBtn = document.getElementById('add-task');
+    const taskCounter = document.getElementById('tasks-counter');
+    const tasksList = document.querySelector('.tasks-list');
 
     function showProjects() {
         const projectCounter = document.getElementById('projects-counter');
@@ -26,7 +29,7 @@ const dom = (() => {
             const editIcon = document.createElement('i');
             const trashIcon = document.createElement('i');
 
-            projectLink.classList.add('link', 'project-link', 'flex', 'hovering', 'project-element');
+            projectLink.classList.add('link', 'project-link', 'flex', 'pointer', 'project-element');
             projectLink.setAttribute('href', '#');
             projectLink.setAttribute('data-link-index', i);
             projectsList.appendChild(projectLink);
@@ -78,8 +81,112 @@ const dom = (() => {
         document.title = `Todo List - ${mainTitleText.textContent}`;
     }
 
-    function showTasks(menuCategory, projectIndex) {
+    function showTasks(menuCategory, projectIndexStart, projectIndexEnd) {
+        const todayDate = format(new Date(), 'yyyy-MM-dd');
+        const taskNumber = 0;
 
+        taskCounter.textContent = 0;
+        tasksList.textContent = 0;
+
+        for (let i = projectIndexStart; i < projectIndexEnd; i++) {
+            for (let j = 0; j < projects.projectsList[i].tasks.length; j++) {
+                const taskDiv = document.createElement('div');
+                const taskLeftDiv = document.createElement('div');
+                const taskRightDiv = document.createElement('div');
+                const circleIcon = document.createElement('i');
+                const taskTitle = document.createElement('p');
+                const dueDate = document.createElement('p');
+                const editIcon = document.createElement('i');
+                const trashIcon = document.createElement('i');
+                const infoIcon = document.createElement('i');
+
+                //Clicked on 'important' - Filter unimportant tasks
+                if (menuCategory === 'important' && projects.projectsList[i].tasks[j].priority !== 'high') {
+                    continue;
+                }
+                //Clicked on 'today' - Filter tasks not from today   
+                else if (menuCategory === 'today' && projects.projectsList[i].tasks[j].date !== todayDate) {
+                    continue;
+                }
+                //Clicked on 'completed' - Filter tasks which us incomplete
+                else if (menuCategory === 'completed' && projects.projectsList[i].tasks[j].completed === false) {
+                    continue;
+                }
+                //Clicked on 'week' - Filter tasks which doesn't take place at the following week
+                else if (menuCategory === 'week') {
+                    const taskDate = parseISO(projects.projectsList[i].tasks[j].date);
+                    const dateOfToday = parseISO(todayDate);
+
+                    if (!(differenceInDays(taskDate, dateOfToday) <= 7 && differenceInDays(taskDate, dateOfToday) >= 0)) {
+                        continue;
+                    }
+                }
+                taskNumber++;
+                taskCounter.textContent = taskNumber;
+
+                //Add classes and icons to task list 
+                taskDiv.classList.add('task-div', 'flex', 'pointer');
+                taskLeftDiv.classList.add('task-left-side', 'flex');
+                taskTitle.classList.add('task-title');
+                if (projects.projectsList[i].tasks[j].completed !== true) {
+                    circleIcon.classList.add('fa-regular', 'fa-circle');
+                }
+                else {
+                    circleIcon.classList.add('fa-regular', 'fa-circle-check');
+                    taskTitle.classList.add('completed');
+                }
+                taskRightDiv.classList.add('task-right-side', 'flex');
+                dueDate.classList.add('task-due-date');
+                editIcon.classList.add('fa-regular', 'fa-pen-to-square');
+                trashIcon.classList.add('fa-regular', 'fa-trash-can');
+                infoIcon.classList.add('fa-solid', 'fa-circle-info');
+
+                //Add circle color class based on priority
+                if (projects.projectsList[i].tasks[j].priority === 'high') {
+                    circleIcon.classList.add('high-priority')
+                }
+                else if (projects.projectsList[i].tasks[j].priority === 'medium') {
+                    circleIcon.classList.add('medium-priority');
+                }
+                else if (projects.projectsList[i].tasks[j].priority === 'low') {
+                    circleIcon.classList.add('low-priority');
+                }
+
+                //Add text
+                taskTitle.textContent = projects.projectsList[i].tasks[j].title;
+
+                if (projects.projectsList[i].tasks[j].date !== undefined) {
+                    dueDate.textContent = projects.projectsList[i].tasks[j].date;
+                }
+                else
+                    dueDate.textContent = '';
+
+                //Add attributes
+                taskDiv.setAttribute('data-project-index', i);
+                taskDiv.setAttribute('data-task-index', j);
+                taskTitle.setAttribute('data-project-index', i);
+                taskTitle.setAttribute('data-task-index', j);
+                editIcon.setAttribute('data-project-index', i);
+                editIcon.setAttribute('data-task-index', j);
+                trashIcon.setAttribute('data-project-index', i);
+                trashIcon.setAttribute('data-task-index', j);
+                infoIcon.setAttribute('data-project-index', i);
+                infoIcon.setAttribute('data-task-index', j);
+
+                //Append elements
+                taskLeftDiv.appendChild(circleIcon);
+                taskLeftDiv.appendChild(taskTitle);
+                taskRightDiv.appendChild(dueDate);
+                taskRightDiv.appendChild(editIcon);
+                taskRightDiv.appendChild(trashIcon);
+                taskRightDiv.appendChild(infoIcon);
+
+                taskDiv.appendChild(taskLeftDiv);
+                taskDiv.appendChild(taskRightDiv);
+                tasksList.appendChild(taskDiv);
+            }
+        }
+        handleModal('close');
     }
 
     function handleModal(modalStatus, modalTitle, modalFunction, projectIndex, taskIndex) {
