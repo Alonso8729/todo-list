@@ -40,7 +40,7 @@ const dom = (() => {
 
 
             //Assign and append project icon to leftProjectLink
-            projectIcon.classList.add('fa-solid', 'fa-list', 'project-element', 'select');
+            projectIcon.classList.add('fa-solid', 'fa-list', 'project-element', 'select', 'icon-link');
             leftProjectDiv.appendChild(projectIcon);
 
             //Assign project title and append to leftProjectLink
@@ -48,7 +48,7 @@ const dom = (() => {
             projectTitle.textContent = projects.projectsList[i].title;
             leftProjectDiv.appendChild(projectTitle)
 
-            leftProjectDiv.classList.add('leftProjectDiv', 'project-element', 'select');
+            leftProjectDiv.classList.add('left-project-div', 'project-element', 'select');
             projectLink.appendChild(leftProjectDiv);
 
             //Add class and append projectIconsDiv
@@ -56,9 +56,9 @@ const dom = (() => {
             projectLink.appendChild(projectIconsDiv);
 
             //Add icons to icons div
-            editIcon.classList.add('fa-regular', 'fa-pen-to-square', 'project-element', 'project-btn', 'select');
+            editIcon.classList.add('fa-regular', 'fa-pen-to-square', 'project-element', 'project-btn', 'select', 'icon-link');
             projectIconsDiv.appendChild(editIcon);
-            trashIcon.classList.add('fa-regular', 'fa-trash-can', 'project-element', 'project-btn', 'select');
+            trashIcon.classList.add('fa-regular', 'fa-trash-can', 'project-element', 'project-btn', 'select', 'icon-link');
             projectIconsDiv.appendChild(trashIcon);
         }
     }
@@ -72,14 +72,13 @@ const dom = (() => {
         mainTitleText.textContent = selectedTitle;
         //Split the selectedIcon into individual class names
         const iconClasses = selectedIcon.split(' ');
-        // Remove existing classes from mainTitleIcon
 
-
-        iconClasses.forEach(className => {
-            mainTitleIcon.classList.add(className);
-
+        iconClasses.forEach((className) => {
+            if (className.length > 0)
+                mainTitleIcon.classList.add(className);
         })
-
+        // Add class to mainTitleIcon
+        mainTitleIcon.classList.add('main-title-icon')
 
         document.title = `Todo List - ${mainTitleText.textContent}`;
     }
@@ -88,7 +87,7 @@ const dom = (() => {
         mainTitleIcon.className = "";
         //Clicked on project link
         if (target.classList.contains('project-element')) {
-            mainTitleIcon.classList.add('fa-solid', 'fa-list');
+            mainTitleIcon.classList.add('fa-solid', 'fa-list', 'main-title-icon');
             mainTitleText.textContent = projects.projectsList[index].title;
             document.title = `Todo List - ${mainTitleText.textContent}`;
         }
@@ -213,52 +212,88 @@ const dom = (() => {
 
 
 
-
-
     }
 
 
     function selectLink(target, index, action) {
         const projectLinks = document.querySelectorAll('.project-link');
         const allLinks = document.querySelectorAll('.link')
+        const allMenuIcons = document.querySelectorAll('icon-link');
+        const allWhite = document.querySelectorAll('.white');
 
         addTaskBtn.classList.add('hide');
 
-        allLinks.forEach(link => {
+        allLinks.forEach((link) => {
             link.classList.remove('selected-link');
         })
 
-        //Clicked on project or menu link
+        allWhite.forEach((element) => {
+            element.classList.remove('white');
+        })
+
+        //Clicked directly on menu or project link
         if (target.classList.contains('link')) {
             target.classList.add('selected-link');
+        }
+        //Clicked somewhere on project-link
+        else if (target.classList.contains('project-element')) {
+            if (target.classList.contains('left-project-div') || target.classList.contains('project-link-icons')) {
+                target.parentElement.classList.add('selected-link');
+            }
+            else if (target.classList.contains('fa-list') || target.classList.contains('fa-trash-can') || target.classList.contains('fa-pen-to-square')) {
+                target.parentElement.parentElement.classList.add('selected-link');
+            }
+            else if (target.classList.contains('project-link-title')) {
+                target.parentElement.parentElement.classList.add('selected-link');
+            }
+        }
+
+        //Clicked somewhere on menu link
+        else if (target.classList.contains('menu-element')) {
+            if (target.classList.contains('menu-icon') || target.classList.contains('link-text')) {
+                target.parentElement.classList.add('selected-link');
+
+            }
+        }
+
+        /*
+        //Clicked directly on project or menu link
+        if (target.classList.contains('link')) {
+            console.log(0)
+            target.classList.add('selected-link');
             //Clicked on edit icons
-            if (action === 'edit')
+            if (action === 'edit') {
+                console.log(1);
                 projectLinks[index].classList.add('selected-link');
+            }
         }
         //Clicked on menu-link's child element
-        else if (target.classList.contains('link-text') || target.classList.contains('icon-link')) {
+        else if (target.classList.contains('link-text') || target.classList.contains('icon-link') && target.classList.contains('menu-element')) {
+            console.log(2)
             target.parentElement.classList.add('selected-link');
         }
 
         //Clicked anywhere on menuLink
-        if (target.classList.contains('nav-menu-link') || target.classList.contains('icon-link') || target.classList.contains('link-text')) {
-            //getTask('menuTitle')
-        }
+        //if (target.classList.contains('nav-menu-link') || target.classList.contains('icon-link') || target.classList.contains('link-text')) {
+        //getTask('menuTitle')
+        //}
         //Clicked anywhere on project
         if (target.classList.contains('project-element')) {
             addTaskBtn.classList.remove('hide');
             //getTask()
             //Clicked on one of the icons
             if (target.classList.contains('fa-list') || target.classList.contains('fa-trash') || target.classList.contains('fa-pen-to-square')) {
-                target.parentElement.classList.add('selected-link');
+                console.log(3)
+                target.parentElement.parentElement.classList.add('selected-link');
             }
             //Clicked on one of the divs
-            else if (target.classList.contains('leftProjectDiv') || target.classList.contains('project-link-icons')) {
+            else if (target.classList.contains('left-project-div') || target.classList.contains('project-link-icons')) {
+                console.log(4);
                 target.parentElement.classList.add('selected-link');
             }
         }
 
-
+*/
 
     }
 
