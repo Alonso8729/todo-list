@@ -63,6 +63,10 @@ select {
     background: var(--linear-gradient-red);
 }
 
+.white {
+    color: var(--white) !important;
+}
+
 .high-priority {
     color: var(--dark-red);
 }
@@ -109,14 +113,16 @@ header {
 
 #sidebar .selected-link {
     background-color: var(--selected);
+    color: var(--white) !important;
+
+}
+
+#sidebar .selected-link .icon-link {
+    color: var(--white) !important;
 }
 
 #sidebar .selected-link:hover {
     background-color: var(--dark-teal);
-}
-
-#sidebar .select {
-    color: var(--white);
 }
 
 .nav-menu {
@@ -226,7 +232,7 @@ link,
     background-color: var(--white);
 }
 
-.leftProjectDiv {
+.left-project-div {
     display: flex;
     gap: 5px;
 }
@@ -430,8 +436,7 @@ footer span {
     font-weight: 100;
 }
 
-.cancel-add,
-.cancel-delete {
+.cancel-btn {
     border: 1px solid var(--standard-grey);
     background-color: var(--white);
     transition: 0.3s;
@@ -446,9 +451,12 @@ footer span {
     border: 1px solid var(--dark-grey);
 }
 
-.delete-btn {
+.confirm-btn {
     border: 1px solid transparent;
     color: var(--white);
+}
+
+.delete-btn {
     background-color: var(--light-red);
 }
 
@@ -457,8 +465,6 @@ footer span {
 }
 
 .add-btn {
-    border: 1px solid transparent;
-    color: var(--white);
     background-color: var(--selected);
 }
 
