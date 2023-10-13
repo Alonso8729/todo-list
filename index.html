@@ -29,36 +29,43 @@
     <!--NAV-->
     <nav id="sidebar">
         <!--NAV-MENU-->
-        <div class="nav-menu-link">
-            <a href="#" class="link nav-menu-link pointer flex " data-link-index="0">
-                <i class="fa-regular fa-calendar-days padding-right icon-link"
-                    data-icon="fa-regular fa-calendar-days"></i>
-                <p class="link-text">
+        <div class="nav-menu-div">
+            <a href="#" class="link nav-menu-link pointer flex select menu-element" data-link-index="0">
+                <i class="fa-regular fa-calendar-days padding-right icon-link menu-icon select menu-element"
+                    data-icon="fa-regular fa-calendar-days select "></i>
+                <p class="link-text select menu-element">
                     All
                 </p>
             </a>
-            <a href="#" class="link nav-menu-link flex pointer" data-link-index="1" data-title="today">
-                <i class="fa-solid fa-calendar-day padding-right icon-link" data-icon="fa-solid fa-calendar-day"></i>
-                <p class="link-text">
+            <a href="#" class="link nav-menu-link flex pointer select menu-element" data-link-index="1"
+                data-title="today">
+                <i class="fa-solid fa-calendar-day padding-right icon-link menu-icon select menu-element"
+                    data-icon="fa-solid fa-calendar-day"></i>
+                <p class="link-text select menu-element">
                     Today
                 </p>
             </a>
-            <a href="#" class="link nav-menu-link flex pointer" data-link-index="2" data-title="week">
-                <i class="fa-solid fa-calendar-week padding-right icon-link " data-icon="fa-solid fa-calendar-week"></i>
-                <p class="link-text">
+            <a href="#" class="link nav-menu-link flex pointer select menu-element" data-link-index="2"
+                data-title="week">
+                <i class="fa-solid fa-calendar-week padding-right icon-link menu-icon select menu-element"
+                    data-icon="fa-solid fa-calendar-week"></i>
+                <p class="link-text select menu-element">
                     Week
                 </p>
             </a>
-            <a href="#" class="link nav-menu-link flex pointer" data-link-index="3" data-title="important">
-                <i class="fa-solid fa-star padding-right icon-link" data-icon="fa-solid fa-star"></i>
-                <p class="link-text">
+            <a href="#" class="link nav-menu-link flex pointer select menu-element" data-link-index="3"
+                data-title="important">
+                <i class="fa-solid fa-star padding-right icon-link menu-icon select menu-element"
+                    data-icon="fa-solid fa-star"></i>
+                <p class="link-text select menu-element">
                     Important
                 </p>
             </a>
-            <a href="#" class="link nav-menu-link flex pointer" data-link-index="4" data-title="completed">
-                <i class="fa-regular fa-calendar-check padding-right icon-link"
+            <a href="#" class="link nav-menu-link flex pointer select menu-element" data-link-index="4"
+                data-title="completed">
+                <i class="fa-regular fa-calendar-check padding-right menu-icon icon-link select menu-element"
                     data-icon="fa-regular fa-calendar-check"></i>
-                <p class="link-text">
+                <p class="link-text select menu-element">
                     Completed
                 </p>
             </a>
@@ -69,7 +76,7 @@
                 <p>
                     Project (<span id="projects-counter"></span>)
                 </p>
-                <i class="fa-solid fa-circle-plus plus-icon add-project-icon">
+                <i class="fa-solid fa-circle-plus plus-icon add-project-icon ">
                     <span class="add-project tooltip-text">Add New Project</span>
                 </i>
             </div>
@@ -119,39 +126,43 @@
                             id="task-title-delete"></span></strong>?<br><br>
                     This action cannot be undone</p>
 
-                <!--Add Project Modal-->
-                <div class="add-modal ">
-                    <label for="title">Title<span id="title-star">*</span></label>
-                    <input type="text" class="form-input" name="title" id="title" autocomplete="off" required>
-                    <p class="empty-input-error hide">Please fill out this field.</p>
-                </div>
-                <div class="modal-task-div">
-                    <div class="task-description-div flex">
-                        <label for="description">Description</label>
-                        <textarea cols="30" rows="3"></textarea>
-                    </div>
-                    <div class="task-due-date-div flex">
-                        <label for="date">Due Date</label>
-                        <input type="date" id="due-date">
-                    </div>
-                    <div class="task-priority">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupSelect01">Priority</label>
-                            <select class="form-select" id="inputGroupSelect01">
-                                <option disabled selected>How important is your task?</option>
-                                <option value="1">Low Priority</option>
-                                <option value="2">Medium Priority</option>
-                                <option value="3">High Priority</option>
-                            </select>
-                        </div>
 
+                <form id="form" name="form" method="post">
+                    <!--Add Project Modal-->
+                    <div class="add-modal ">
+                        <label for="title">Title<span id="title-star">*</span></label>
+                        <input type="text" class="form-input" name="title" id="title" autocomplete="off" required>
+                        <p class="empty-input-error hide">Please fill out this field.</p>
                     </div>
-                </div>
+                    <div class="modal-task-div">
+                        <div class="task-description-div flex">
+                            <label for="description">Description</label>
+                            <textarea cols="30" rows="3"></textarea>
+                        </div>
+                        <div class="task-due-date-div flex">
+                            <label for="date">Due Date</label>
+                            <input type="date" id="due-date">
+                        </div>
+                        <div class="task-priority">
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="inputGroupSelect01">Priority</label>
+                                <select class="form-select" id="inputGroupSelect01">
+                                    <option disabled selected>How important is your task?</option>
+                                    <option value="1">Low Priority</option>
+                                    <option value="2">Medium Priority</option>
+                                    <option value="3">High Priority</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
             </div>
+            <!--MODAL BUTTONS-->
             <div class="modal-buttons flex">
                 <button type="button" class="cancel-btn pointer">Cancel</button>
-                <button type="button" class="add-btn pointer ">Add</button>
-                    
+                <button type="button" class="confirm-btn pointer ">Add</button>
+
             </div>
         </div>
     </div>
