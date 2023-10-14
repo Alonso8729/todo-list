@@ -37,28 +37,32 @@ const dom = (() => {
             projectLink.setAttribute('data-link-index', i);
             projectsList.appendChild(projectLink);
 
-
-
             //Assign and append project icon to leftProjectLink
             projectIcon.classList.add('fa-solid', 'fa-list', 'project-element', 'select', 'icon-link');
+            projectIcon.setAttribute('data-link-index', i);
             leftProjectDiv.appendChild(projectIcon);
+            leftProjectDiv.setAttribute('data-link-index', i);
 
             //Assign project title and append to leftProjectLink
             projectTitle.classList.add('project-link-title', 'project-element', 'select');
+            projectTitle.setAttribute('data-link-index', i);
             projectTitle.textContent = projects.projectsList[i].title;
             leftProjectDiv.appendChild(projectTitle)
 
             leftProjectDiv.classList.add('left-project-div', 'project-element', 'select');
             projectLink.appendChild(leftProjectDiv);
 
-            //Add class and append projectIconsDiv
+            //Add class and attribute and append projectIconsDiv
             projectIconsDiv.classList.add('project-link-icons', 'flex', 'project-element', 'select');
+            projectIconsDiv.setAttribute('data-link-index', i);
             projectLink.appendChild(projectIconsDiv);
 
             //Add icons to icons div
             editIcon.classList.add('fa-regular', 'fa-pen-to-square', 'project-element', 'project-btn', 'select', 'icon-link');
+            editIcon.setAttribute('data-link-index', i);
             projectIconsDiv.appendChild(editIcon);
             trashIcon.classList.add('fa-regular', 'fa-trash-can', 'project-element', 'project-btn', 'select', 'icon-link');
+            trashIcon.setAttribute('data-link-index', i);
             projectIconsDiv.appendChild(trashIcon);
         }
     }
@@ -86,6 +90,7 @@ const dom = (() => {
     function changeMainTitle(target, index) {
         mainTitleIcon.className = "";
         //Clicked on project link
+        console.log(index)
         if (target.classList.contains('project-element')) {
             mainTitleIcon.classList.add('fa-solid', 'fa-list', 'main-title-icon');
             mainTitleText.textContent = projects.projectsList[index].title;
@@ -219,16 +224,11 @@ const dom = (() => {
         const projectLinks = document.querySelectorAll('.project-link');
         const allLinks = document.querySelectorAll('.link')
         const allMenuIcons = document.querySelectorAll('icon-link');
-        const allWhite = document.querySelectorAll('.white');
 
         addTaskBtn.classList.add('hide');
 
         allLinks.forEach((link) => {
             link.classList.remove('selected-link');
-        })
-
-        allWhite.forEach((element) => {
-            element.classList.remove('white');
         })
 
         //Clicked directly on menu or project link
