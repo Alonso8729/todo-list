@@ -1,4 +1,6 @@
 import dom from './dom.js'
+import projects from './projects.js';
+import tasks from './tasks.js';
 
 const eventHandler = (() => {
 
@@ -6,11 +8,16 @@ const eventHandler = (() => {
         let projectIndex;
         let taskIndex;
 
-        document.addEventListener(click, (event) => {
+        document.addEventListener('click', (event) => {
             const { target } = event;
             const selectedLink = document.querySelector('.selected-link')
             const modalTitle = document.querySelector('.modal-title');
             const linkIndex = parseInt(target.getAttribute('data-link-index'), 10);
+            //Style selected link
+            if (target.classList.contains('select')) {
+                dom.selectLink(target, linkIndex);
+                dom.changeMainTitle(target, linkIndex);
+            }
 
             //Modal for adding project
             if (target.classList.contains('add-project-icon')) {
@@ -50,12 +57,21 @@ const eventHandler = (() => {
                     dom.handleModal('show', 'Task Info', 'info', projectIndex, taskIndex);
                 }
 
+            }
 
-        }
+            //Clicked on task element, change completed status
+            if (target.classList.contains('task-element')) {
+                projectIndex = parseInt(target.getAttribute('data-project-index'));
+                taskIndex = parseInt(target.getAttribute('data-task-index'));
+                tasks.toggleCompletedTask(selectedLink,projectIndex,taskIndex)
+            }
 
         })
-}
+    }
+    return {
+        clickListener
+    }
 
-}) ();
+})();
 
 export default eventHandler;
