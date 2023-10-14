@@ -90,7 +90,6 @@ const dom = (() => {
     function changeMainTitle(target, index) {
         mainTitleIcon.className = "";
         //Clicked on project link
-        console.log(index)
         if (target.classList.contains('project-element')) {
             mainTitleIcon.classList.add('fa-solid', 'fa-list', 'main-title-icon');
             mainTitleText.textContent = projects.projectsList[index].title;
@@ -105,9 +104,8 @@ const dom = (() => {
     function showTasks(menuCategory, projectIndexStart, projectIndexEnd) {
         const todayDate = format(new Date(), 'yyyy-MM-dd');
         let taskNumber = 0;
-
         taskCounter.textContent = 0;
-
+        tasksList.textContent = "";
         for (let i = projectIndexStart; i < projectIndexEnd; i++) {
             for (let j = 0; j < projects.projectsList[i].tasks.length; j++) {
                 const taskDiv = document.createElement('div');
@@ -119,6 +117,7 @@ const dom = (() => {
                 const editIcon = document.createElement('i');
                 const trashIcon = document.createElement('i');
                 const infoIcon = document.createElement('i');
+
 
                 //Clicked on 'important' - Filter unimportant tasks
                 if (menuCategory === 'important' && projects.projectsList[i].tasks[j].priority !== 'high') {
@@ -145,14 +144,14 @@ const dom = (() => {
                 taskCounter.textContent = taskNumber;
 
                 //Add classes and icons to task list 
-                taskDiv.classList.add('task-div', 'flex', 'pointer');
-                taskLeftDiv.classList.add('task-left-side', 'flex');
-                taskTitle.classList.add('task-title');
+                taskDiv.classList.add('task-div', 'flex', 'pointer', 'task-element');
+                taskLeftDiv.classList.add('task-left-side', 'flex', 'task-element');
+                taskTitle.classList.add('task-title', 'task-element');
                 if (projects.projectsList[i].tasks[j].completed !== true) {
-                    circleIcon.classList.add('fa-regular', 'fa-circle');
+                    circleIcon.classList.add('fa-regular', 'fa-circle', 'task-element');
                 }
                 else {
-                    circleIcon.classList.add('fa-regular', 'fa-circle-check');
+                    circleIcon.classList.add('fa-regular', 'fa-circle-check', 'task-element');
                     taskTitle.classList.add('completed');
                 }
                 taskRightDiv.classList.add('task-right-side', 'flex');
@@ -204,6 +203,18 @@ const dom = (() => {
                 taskDiv.appendChild(taskLeftDiv);
                 taskDiv.appendChild(taskRightDiv);
                 tasksList.appendChild(taskDiv);
+
+                //TASK COMPLETION
+                if (projects.projectsList[i].tasks[j].completed === false) {
+                    taskTitle.classList.remove('completed');
+                    circleIcon.classList.remove('fa-circle-check');
+                    circleIcon.classList.add('fa-circle');
+                }
+                else {
+                    taskTitle.classList.add('completed');
+                    circleIcon.classList.remove('fa-circle');
+                    circleIcon.classList.add('fa-circle-check');
+                }
             }
         }
         handleModal('close');
@@ -222,7 +233,7 @@ const dom = (() => {
             endProjectIndex = projectIndex + 1;
 
             //If the selected projects doesn't have any tasks
-            if (projects.projectsList.tasks.length === 0) {
+            if (projects.projectsList[projectIndex].tasks.length === 0) {
                 taskCounter.textContent = 0;
             }
         }
@@ -230,8 +241,8 @@ const dom = (() => {
         else {
             startProjectIndex = 0;
             endProjectIndex = projects.projectsList.length;
-            showTasks(title, startProjectIndex, endProjectIndex);
         }
+        showTasks(title, startProjectIndex, endProjectIndex);
     }
 
     function handleModal(modalStatus, modalTitle, modalFunction, projectIndex, taskIndex) {
@@ -242,10 +253,9 @@ const dom = (() => {
 
     }
 
-    function selectLink(target, index, action) {
-        const projectLinks = document.querySelectorAll('.project-link');
+    function selectLink(target, index) {
         const allLinks = document.querySelectorAll('.link')
-        const allMenuIcons = document.querySelectorAll('icon-link');
+        const title = target.getAttribute('data-title');
 
         addTaskBtn.classList.add('hide');
 
@@ -259,6 +269,8 @@ const dom = (() => {
         }
         //Clicked somewhere on project-link
         else if (target.classList.contains('project-element')) {
+            addTaskBtn.classList.remove('hide');
+
             if (target.classList.contains('left-project-div') || target.classList.contains('project-link-icons')) {
                 target.parentElement.classList.add('selected-link');
             }
@@ -269,13 +281,19 @@ const dom = (() => {
                 target.parentElement.parentElement.classList.add('selected-link');
             }
         }
-
         //Clicked somewhere on menu link
         else if (target.classList.contains('menu-element')) {
             if (target.classList.contains('menu-icon') || target.classList.contains('link-text')) {
                 target.parentElement.classList.add('selected-link');
-
             }
+        }
+
+        if (target.classList.contains('project-element')) {
+            addTaskBtn.classList.remove('hide');
+            getTasks('project', index)
+        }
+        else {
+            getTasks(title);
         }
 
     }
