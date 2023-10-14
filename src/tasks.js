@@ -35,8 +35,27 @@ const tasks = (() => {
         dom.showTasks('all');
     }
 
+    function toggleCompletedTask(selectedLink, projectIndex, taskIndex) {
+        let currentLink;
+
+        if (projects.projectsList[projectIndex].tasks[taskIndex].completed === true) {
+            projects.projectsList[projectIndex].tasks[taskIndex].completed = false
+        }
+        else {
+            projects.projectsList[projectIndex].tasks[taskIndex].completed = true;
+        }
+
+        if (selectedLink.classList.contains('project-element')) {
+            currentLink = 'project'
+        }
+        else
+            currentLink = selectedLink.getAttribute('data-title');
+
+        dom.getTasks(currentLink, projectIndex);
+    }
+
     return {
-        addTask, deleteTask, editTask
+        addTask, deleteTask, editTask, toggleCompletedTask
     };
 
 })();
