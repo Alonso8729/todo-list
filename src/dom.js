@@ -104,10 +104,9 @@ const dom = (() => {
 
     function showTasks(menuCategory, projectIndexStart, projectIndexEnd) {
         const todayDate = format(new Date(), 'yyyy-MM-dd');
-        const taskNumber = 0;
+        let taskNumber = 0;
 
         taskCounter.textContent = 0;
-        tasksList.textContent = 0;
 
         for (let i = projectIndexStart; i < projectIndexEnd; i++) {
             for (let j = 0; j < projects.projectsList[i].tasks.length; j++) {
@@ -210,15 +209,38 @@ const dom = (() => {
         handleModal('close');
     }
 
+    function getTasks(title, projectIndex) {
+        let startProjectIndex;
+        let endProjectIndex
+
+        // SAVE PROJECTS WITH TASKS TO LOCAL STORAGE
+        localStorage.setItem('projects', JSON.stringify(projects.projectsList));
+
+        //Clicked on project link
+        if (title === 'project') {
+            startProjectIndex = projectIndex;
+            endProjectIndex = projectIndex + 1;
+
+            //If the selected projects doesn't have any tasks
+            if (projects.projectsList.tasks.length === 0) {
+                taskCounter.textContent = 0;
+            }
+        }
+        //Clicked on menu link
+        else {
+            startProjectIndex = 0;
+            endProjectIndex = projects.projectsList.length;
+            showTasks(title, startProjectIndex, endProjectIndex);
+        }
+    }
+
     function handleModal(modalStatus, modalTitle, modalFunction, projectIndex, taskIndex) {
         const modalHeader = document.querySelector('.modal-header');
         const cancelBtn = document.querySelector('.cancel-btn');
         const confirmBtn = document.querySelector('.confirm-btn');
 
 
-
     }
-
 
     function selectLink(target, index, action) {
         const projectLinks = document.querySelectorAll('.project-link');
@@ -256,49 +278,10 @@ const dom = (() => {
             }
         }
 
-        /*
-        //Clicked directly on project or menu link
-        if (target.classList.contains('link')) {
-            console.log(0)
-            target.classList.add('selected-link');
-            //Clicked on edit icons
-            if (action === 'edit') {
-                console.log(1);
-                projectLinks[index].classList.add('selected-link');
-            }
-        }
-        //Clicked on menu-link's child element
-        else if (target.classList.contains('link-text') || target.classList.contains('icon-link') && target.classList.contains('menu-element')) {
-            console.log(2)
-            target.parentElement.classList.add('selected-link');
-        }
-
-        //Clicked anywhere on menuLink
-        //if (target.classList.contains('nav-menu-link') || target.classList.contains('icon-link') || target.classList.contains('link-text')) {
-        //getTask('menuTitle')
-        //}
-        //Clicked anywhere on project
-        if (target.classList.contains('project-element')) {
-            addTaskBtn.classList.remove('hide');
-            //getTask()
-            //Clicked on one of the icons
-            if (target.classList.contains('fa-list') || target.classList.contains('fa-trash') || target.classList.contains('fa-pen-to-square')) {
-                console.log(3)
-                target.parentElement.parentElement.classList.add('selected-link');
-            }
-            //Clicked on one of the divs
-            else if (target.classList.contains('left-project-div') || target.classList.contains('project-link-icons')) {
-                console.log(4);
-                target.parentElement.classList.add('selected-link');
-            }
-        }
-
-*/
-
     }
 
     return {
-        showProjects, showMainTitle, handleModal, showTasks, selectLink, changeMainTitle
+        showProjects, showMainTitle, handleModal, showTasks, selectLink, changeMainTitle, getTasks
     };
 })();
 
