@@ -11,6 +11,8 @@ const eventHandler = (() => {
         document.addEventListener('click', (event) => {
             const { target } = event;
             const selectedLink = document.querySelector('.selected-link')
+            const modalDeleteProjectText = document.querySelector('.delete-project-content');
+
             //const modalTitle = document.querySelector('.modal-title');
             const linkIndex = parseInt(target.getAttribute('data-link-index'), 10);
             //Style selected link
@@ -58,16 +60,6 @@ const eventHandler = (() => {
 
             }
 
-            //Handle click on DELETE BUTTON
-            if (target.classList.contains('delete-btn')) {
-                projectIndex = parseInt(target.getAttribute('data-link-index'), 10);
-                //DELETE PROJECT
-                if (selectedLink.classList.contains('project-element')) {
-                    projects.deleteProject(projectIndex);
-                    dom.showProjects();
-                }
-            }
-
             //If cancel button or close button is clicked
             if (target.classList.contains('cancel-btn') || target.classList.contains('fa-xmark')) {
                 dom.handleModal('close')
@@ -84,6 +76,13 @@ const eventHandler = (() => {
                 if (target.textContent === 'Add') {
                     projectIndex = parseInt(target.getAttribute('data-link-index'), 10);
                     dom.validateModal('add', projectIndex);
+                }
+                else if (target.textContent === 'Delete') {
+                    //DELETE PROJECT
+                    projectIndex = parseInt(selectedLink.getAttribute('data-link-index'), 10);
+                    if (!(modalDeleteProjectText.classList.contains('hide'))) {
+                        dom.validateModal('delete', projectIndex, '', selectedLink);
+                    }
                 }
             }
         })
