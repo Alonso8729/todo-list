@@ -74,15 +74,23 @@ const eventHandler = (() => {
             if (target.classList.contains('confirm-btn')) {
                 //Adding 
                 if (target.textContent === 'Add') {
-                    projectIndex = parseInt(target.getAttribute('data-link-index'), 10);
-                    dom.validateModal('add', projectIndex);
+                    projectIndex = parseInt(selectedLink.getAttribute('data-link-index'), 10);
+                    dom.validateModal('add', projectIndex, '', selectedLink);
+                    //dom.handleModal('close');
                 }
                 else if (target.textContent === 'Delete') {
                     //DELETE PROJECT
                     projectIndex = parseInt(selectedLink.getAttribute('data-link-index'), 10);
                     if (!(modalDeleteProjectText.classList.contains('hide'))) {
                         dom.validateModal('delete', projectIndex, '', selectedLink);
+                        dom.showMainTitle(0);
+                        dom.getTasks('all');
                     }
+                }
+                else if (target.textContent === 'Edit') {
+                    projectIndex = parseInt(selectedLink.getAttribute('data-link-index'), 10);
+                    dom.validateModal('edit', projectIndex, "", selectedLink);
+                    dom.handleModal('close');
                 }
             }
         })
