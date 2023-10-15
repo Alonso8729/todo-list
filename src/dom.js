@@ -1,4 +1,3 @@
-
 import { format, parseISO, differenceInDays } from 'date-fns';
 import projects from './projects.js';
 
@@ -11,11 +10,18 @@ const dom = (() => {
     const taskCounter = document.getElementById('tasks-counter');
     const tasksList = document.querySelector('.tasks-list');
     const modal = document.querySelector('.modal');
-    const modalTitle = document.querySelector('.modal-title');
+    const modalMainTitle = document.querySelector('.modal-title');
     const modalTitleError = document.querySelector('.empty-input-error');
+    const form = document.querySelector('.form');
+    const formTitle = document.querySelector('.form-title');
+
 
     function showProjects() {
         const projectCounter = document.getElementById('projects-counter');
+        const projectsDiv = document.querySelector('.projects-list');
+
+        //Restarting projectsDiv
+        projectsDiv.textContent = "";
         //show projects count
         projectCounter.textContent = projects.projectsList.length;
 
@@ -249,8 +255,67 @@ const dom = (() => {
         const modalHeader = document.querySelector('.modal-header');
         const cancelBtn = document.querySelector('.cancel-btn');
         const confirmBtn = document.querySelector('.confirm-btn');
+        const deleteModalContent = document.querySelector('.delete-content');
+        //const allProjectTitles = document.querySelectorAll('.project-link-title');
+        const strongTitle = document.getElementById('strong-title');
+
+        //restart classes
+        confirmBtn.className = 'confirm-btn';
+        modalHeader.className = 'modal-header'
+        cancelBtn.className = 'cancel-btn';
+        form.reset();
+        form.classList.add('hide');
+        modalTitleError.classList.add('hide');
+        deleteModalContent.classList.add('hide');
+
+        if (modalStatus === 'show') {
+            modal.classList.remove('hide');
+            //adding classes that for both adding a task and project
+            if (modalFunction === 'add') {
+                form.classList.remove('hide');
+                modalHeader.classList.add('mixed-teal')
+                confirmBtn.textContent = "Add";
+                confirmBtn.classList.add('add-btn', 'pointer');
+                cancelBtn.classList.add('cancel-add', 'pointer');
+                //adding a project
+                if (modalTitle === "Add Project") {
+                    modalMainTitle.textContent = modalTitle;
+                }
+            }
+            else if (modalFunction === 'delete') {
+                deleteModalContent.classList.remove('hide')
+                modalHeader.classList.add('mixed-red');
+                confirmBtn.textContent = "Delete";
+                confirmBtn.classList.add('delete-btn', 'pointer');
+                cancelBtn.classList.add('cancel-delete', 'pointer');
+                strongTitle.textContent = projects.projectsList[projectIndex].title;
+                if (modalTitle === 'Delete Project') {
+                    modalMainTitle.textContent = modalTitle;
+                }
+            }
+        }
+        else if (modalStatus === 'close') {
+            modal.classList.add('hide');
+
+        }
 
 
+    }
+
+    function validateModal(action, projectIndex, taskIndex,currentLink) {
+
+        if (!(form.classList.contains('hide')) && formTitle.value === "") {
+            modalTitleError.classList.remove('hide');
+        }
+        else if (formTitle.value !== "") {
+            projects.addProject(formTitle.value);
+            //select new added project
+            const newProject = tasksList.lastChild;
+            const newProjectIndex = parseInt(tasksList.lastChild.getAttribute('data-link-index'), 10);
+            selectLink(newProject, newProjectIndex);
+            changeMainTitle(newProject, newProjectIndex);
+            showProjects();
+        }
     }
 
     function selectLink(target, index) {
@@ -299,7 +364,7 @@ const dom = (() => {
     }
 
     return {
-        showProjects, showMainTitle, handleModal, showTasks, selectLink, changeMainTitle, getTasks
+        showProjects, showMainTitle, handleModal, showTasks, selectLink, changeMainTitle, getTasks, validateModal
     };
 })();
 
