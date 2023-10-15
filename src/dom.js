@@ -257,7 +257,8 @@ const dom = (() => {
         const cancelBtn = document.querySelector('.cancel-btn');
         const confirmBtn = document.querySelector('.confirm-btn');
         //const allProjectTitles = document.querySelectorAll('.project-link-title');
-        const strongTitle = document.querySelector('.strong-title');
+        const strongProjectTitle = document.querySelector('.strong-project-title');
+        const strongTaskTitle = document.querySelector('.strong-task-title');
 
         //restart classes
         confirmBtn.className = 'confirm-btn';
@@ -289,10 +290,15 @@ const dom = (() => {
                 confirmBtn.textContent = "Delete";
                 confirmBtn.classList.add('delete-btn', 'pointer');
                 cancelBtn.classList.add('cancel-delete', 'pointer');
-                strongTitle.textContent = projects.projectsList[projectIndex].title;
+                modalMainTitle.textContent = modalTitle;
+
                 if (modalTitle === 'Delete Project') {
-                    modalDeleteProjectText.classList.remove('hide')
-                    modalMainTitle.textContent = modalTitle;
+                    modalDeleteProjectText.classList.remove('hide');
+                    strongProjectTitle.textContent = projects.projectsList[projectIndex].title;
+                }
+                else {
+                    modalDeleteTaskText.classList.remove('hide');
+                    strongTaskTitle.textContent = projects.projectsList[projectIndex].tasks[taskIndex].title;
                 }
             }
             else if (modalFunction === 'edit') {
