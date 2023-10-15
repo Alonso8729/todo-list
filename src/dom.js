@@ -14,7 +14,8 @@ const dom = (() => {
     const modalTitleError = document.querySelector('.empty-input-error');
     const form = document.querySelector('.form');
     const formTitle = document.querySelector('.form-title');
-
+    const modalDeleteProjectText = document.querySelector('.delete-project-content');
+    const modalDeleteTaskText = document.querySelector('.delete-task-content');
 
     function showProjects() {
         const projectCounter = document.getElementById('projects-counter');
@@ -255,9 +256,8 @@ const dom = (() => {
         const modalHeader = document.querySelector('.modal-header');
         const cancelBtn = document.querySelector('.cancel-btn');
         const confirmBtn = document.querySelector('.confirm-btn');
-        const deleteModalContent = document.querySelector('.delete-content');
         //const allProjectTitles = document.querySelectorAll('.project-link-title');
-        const strongTitle = document.getElementById('strong-title');
+        const strongTitle = document.querySelector('.strong-title');
 
         //restart classes
         confirmBtn.className = 'confirm-btn';
@@ -266,7 +266,8 @@ const dom = (() => {
         form.reset();
         form.classList.add('hide');
         modalTitleError.classList.add('hide');
-        deleteModalContent.classList.add('hide');
+        modalDeleteProjectText.classList.add('hide');
+        modalDeleteTaskText.classList.add('hide');
 
         if (modalStatus === 'show') {
             modal.classList.remove('hide');
@@ -283,13 +284,13 @@ const dom = (() => {
                 }
             }
             else if (modalFunction === 'delete') {
-                deleteModalContent.classList.remove('hide')
                 modalHeader.classList.add('mixed-red');
                 confirmBtn.textContent = "Delete";
                 confirmBtn.classList.add('delete-btn', 'pointer');
                 cancelBtn.classList.add('cancel-delete', 'pointer');
                 strongTitle.textContent = projects.projectsList[projectIndex].title;
                 if (modalTitle === 'Delete Project') {
+                    modalDeleteProjectText.classList.remove('hide')
                     modalMainTitle.textContent = modalTitle;
                 }
             }
@@ -302,12 +303,12 @@ const dom = (() => {
 
     }
 
-    function validateModal(action, projectIndex, taskIndex,currentLink) {
+    function validateModal(action, projectIndex, taskIndex, currentLink) {
 
         if (!(form.classList.contains('hide')) && formTitle.value === "") {
             modalTitleError.classList.remove('hide');
         }
-        else if (formTitle.value !== "") {
+        else if (formTitle.value !== "" && action === 'add') {
             projects.addProject(formTitle.value);
             //select new added project
             const newProject = tasksList.lastChild;
@@ -316,6 +317,17 @@ const dom = (() => {
             changeMainTitle(newProject, newProjectIndex);
             showProjects();
         }
+        else if (action === 'delete') {
+            //DELETE PROJECT
+            if (!(modalDeleteProjectText.classList.contains('hide'))) {
+                projects.deleteProject(projectIndex);
+                showMainTitle(0);
+                showProjects();
+                getTasks('all')
+            }
+        }
+
+
     }
 
     function selectLink(target, index) {
