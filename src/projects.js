@@ -61,10 +61,10 @@ const projects = (() => {
         dom.showProjects();
     }
 
-    function editProject(index, title) {
+    function editProject(index, title, link) {
         projectsList[index].title = title;
         dom.showProjects();
-        dom.selectLink()
+        dom.selectLink(link, index, 'edit');
     }
 
 
