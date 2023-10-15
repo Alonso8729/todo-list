@@ -24,9 +24,17 @@ const projects = (() => {
                     description: 'Remove any item that is not belong to the room, and use vacuum cleaner to clean up the carpet',
                     date: '2023-10-23',
                     priority: 'low',
-                    projects: 1,
+                    projectIndex: 1,
                     taskIndex: 0,
                     completed: true
+                }, {
+                    title: 'Cleaning the car',
+                    description: '',
+                    date: '',
+                    priority: 'medium',
+                    projectIndex: 1,
+                    taskIndex: 1,
+                    completed: false
                 }]
             }
         ]
