@@ -19,7 +19,7 @@
 
 <body>
     <!--Header-->
-    <header class="mixed-teal">
+    <header class="mixed-teal header">
         <p class="logo">
             <i class="fa-regular fa-calendar-check"></i>
             CheckMate
@@ -30,7 +30,7 @@
     <nav id="sidebar">
         <!--NAV-MENU-->
         <div class="nav-menu-div">
-            <a href="#" class="link nav-menu-link pointer flex select menu-element" data-link-index="0"
+            <a href="#" class="link nav-menu-link pointer flex select menu-element selected-link" data-link-index="0"
                 data-title="all">
                 <i class="fa-regular fa-calendar-days padding-right icon-link menu-icon select menu-element"
                     data-link-index="0" data-icon="fa-regular fa-calendar-days select" data-title="all"></i>
@@ -114,29 +114,24 @@
     <!--Modal-->
     <div id="modal" class="modal hide">
         <div class="modal-card" id="project-input-modal">
-            <div class="modal-header mixed-teal">
+            <div class="modal-header">
                 <h2 class="modal-title"></h2>
                 <i class="fa-solid fa-xmark pointer" id="close-btn"></i>
             </div>
             <div class="modal-content flex">
-                <!--Delete Project-->
-                <p class="delete-project-content hide">Are you sure you want to delete <strong><span
-                            id="project-title-delete"></span></strong>?<br><br>
-                    This action cannot be undone</p>
-                <!--Delete Task-->
-                <p class="delete-task-content hide">Are you sure you want to delete <strong><span
-                            id="task-title-delete"></span></strong>?<br><br>
+                <!--Delete project or task-->
+                <p class="delete-content hide">Are you sure you want to delete <strong><span
+                            id="strong-title"></span></strong>?<br><br>
                     This action cannot be undone</p>
 
-
-                <form id="form" name="form" method="post">
-                    <!--Add Project Modal-->
-                    <div class="add-modal ">
-                        <label for="title">Title<span id="title-star">*</span></label>
-                        <input type="text" class="form-input" name="title" id="title" autocomplete="off" required>
+                <form id="form" method="post" class="form hide">
+                    <div class="modal-title-div flex">
+                        <label for="form-title">Title<span id="title-star">*</span></label>
+                        <input type="text" class="form-input form-title" name="title" id="form-title" autocomplete="off"
+                            required>
                         <p class="empty-input-error hide">Please fill out this field.</p>
                     </div>
-                    <div class="modal-task-div">
+                    <div class="modal-task-div hide">
                         <div class="task-description-div flex">
                             <label for="description">Description</label>
                             <textarea cols="30" rows="3"></textarea>
@@ -163,7 +158,7 @@
             <!--MODAL BUTTONS-->
             <div class="modal-buttons flex">
                 <button type="button" class="cancel-btn pointer">Cancel</button>
-                <button type="button" class="confirm-btn pointer ">Add</button>
+                <button type="button" class="confirm-btn pointer "></button>
 
             </div>
         </div>
