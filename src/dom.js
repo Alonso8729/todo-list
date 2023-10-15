@@ -9,6 +9,7 @@ const dom = (() => {
     const addTaskBtn = document.getElementById('add-task');
     const taskCounter = document.getElementById('tasks-counter');
     const tasksList = document.querySelector('.tasks-list');
+    const projectList = document.querySelector('.projects-list')
     const modal = document.querySelector('.modal');
     const modalMainTitle = document.querySelector('.modal-title');
     const modalTitleError = document.querySelector('.empty-input-error');
@@ -230,14 +231,13 @@ const dom = (() => {
     function getTasks(title, projectIndex) {
         let startProjectIndex;
         let endProjectIndex
-
         // SAVE PROJECTS WITH TASKS TO LOCAL STORAGE
         localStorage.setItem('projects', JSON.stringify(projects.projectsList));
 
         //Clicked on project link
         if (title === 'project') {
             startProjectIndex = projectIndex;
-            endProjectIndex = projectIndex + 1;
+            endProjectIndex = parseInt(projectIndex) + 1;
 
             //If the selected projects doesn't have any tasks
             if (projects.projectsList[projectIndex].tasks.length === 0) {
@@ -284,6 +284,7 @@ const dom = (() => {
                 }
             }
             else if (modalFunction === 'delete') {
+                //adding classes that for both deleting a task and project
                 modalHeader.classList.add('mixed-red');
                 confirmBtn.textContent = "Delete";
                 confirmBtn.classList.add('delete-btn', 'pointer');
@@ -291,6 +292,16 @@ const dom = (() => {
                 strongTitle.textContent = projects.projectsList[projectIndex].title;
                 if (modalTitle === 'Delete Project') {
                     modalDeleteProjectText.classList.remove('hide')
+                    modalMainTitle.textContent = modalTitle;
+                }
+            }
+            else if (modalFunction === 'edit') {
+                form.classList.remove('hide');
+                modalHeader.classList.add('mixed-teal')
+                confirmBtn.textContent = "Edit";
+                confirmBtn.classList.add('add-btn', 'pointer');
+                cancelBtn.classList.add('cancel-add', 'pointer');
+                if (modalTitle === 'Edit Project') {
                     modalMainTitle.textContent = modalTitle;
                 }
             }
@@ -304,6 +315,7 @@ const dom = (() => {
     }
 
     function validateModal(action, projectIndex, taskIndex, currentLink) {
+        const allMenuLink = document.querySelector('.link:first-child');
 
         if (!(form.classList.contains('hide')) && formTitle.value === "") {
             modalTitleError.classList.remove('hide');
@@ -311,29 +323,34 @@ const dom = (() => {
         else if (formTitle.value !== "" && action === 'add') {
             projects.addProject(formTitle.value);
             //select new added project
-            const newProject = tasksList.lastChild;
-            const newProjectIndex = parseInt(tasksList.lastChild.getAttribute('data-link-index'), 10);
+            const newProject = projectList.lastChild;
+            const newProjectIndex = projectList.lastChild.getAttribute('data-link-index');
             selectLink(newProject, newProjectIndex);
             changeMainTitle(newProject, newProjectIndex);
-            showProjects();
         }
         else if (action === 'delete') {
             //DELETE PROJECT
             if (!(modalDeleteProjectText.classList.contains('hide'))) {
                 projects.deleteProject(projectIndex);
-                showMainTitle(0);
-                showProjects();
-                getTasks('all')
+                addTaskBtn.classList.add('hide');
+                selectLink(allMenuLink, projectIndex);
+            }
+        }
+        else if (action === 'edit') {
+            //EDIT PROJECT
+            if (taskIndex === '') {
+                projects.editProject(projectIndex, formTitle.value, currentLink);
+                changeMainTitle(currentLink, projectIndex);
             }
         }
 
 
     }
 
-    function selectLink(target, index) {
+    function selectLink(target, index, action) {
         const allLinks = document.querySelectorAll('.link')
         const title = target.getAttribute('data-title');
-
+        const allProjects = document.querySelectorAll('.project-link');
         addTaskBtn.classList.add('hide');
 
         allLinks.forEach((link) => {
@@ -343,6 +360,9 @@ const dom = (() => {
         //Clicked directly on menu or project link
         if (target.classList.contains('link')) {
             target.classList.add('selected-link');
+            if (action === 'edit') {
+                allProjects[index].classList.add('selected-link');
+            }
         }
         //Clicked somewhere on project-link
         else if (target.classList.contains('project-element')) {
