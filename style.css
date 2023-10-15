@@ -12,7 +12,7 @@
     --selected: #1fbaa5;
     --tooltip-bg: #2d2c2c;
     --title-star: #dc2626;
-    --yellow: rgb(252, 252, 34);
+    --yellow: rgb(218, 218, 33);
     --green: rgb(12, 179, 12);
 }
 
@@ -40,7 +40,7 @@ select {
 }
 
 .hide {
-    display: none;
+    display: none !important;
 }
 
 .show {
@@ -80,14 +80,15 @@ select {
 }
 
 /*icons*/
-.fa-trash-can:hover,
-.fa-pen-to-square:hover,
-fa-circle-info:hover {
+
+#sidebar .fa-trash-can:hover,
+#sidebar .fa-pen-to-square:hover,
+#sidebar fa-circle-info:hover {
     font-size: 1.3rem;
 }
 
 /*HEADER*/
-header {
+.header {
     padding: 1.5rem 2rem;
     color: white;
     font-size: 1.8rem;
@@ -241,6 +242,10 @@ link,
     border: 1px solid var(--dark-teal);
 }
 
+.project-link-icons i {
+    transition: 0.1s;
+}
+
 .project-link i {
     color: var(--dark-teal);
 }
@@ -326,6 +331,10 @@ footer span {
     padding: 1rem;
 }
 
+.modal-title {
+    font-weight: 600;
+}
+
 #close-btn {
     font-size: 1.3rem;
 }
@@ -341,8 +350,12 @@ footer span {
     border: 1px solid var(--dark-teal);
 }
 
-.add-modal {
+form {
     display: flex;
+    flex-direction: column;
+}
+
+.modal-title-div {
     flex-direction: column;
 }
 
@@ -357,7 +370,7 @@ footer span {
 
 .empty-input-error {
     color: var(--title-star);
-    font-size: 14px;
+    font-size: 12px;
     margin-top: 5px;
 }
 
@@ -454,6 +467,7 @@ footer span {
 .confirm-btn {
     border: 1px solid transparent;
     color: var(--white);
+    transition: 0.3s;
 }
 
 .delete-btn {
@@ -488,7 +502,7 @@ footer span {
 }
 
 .main-title-icon {
-    font-size: 1.5rem;
+    font-size: 30px;
     color: var(--selected);
 }
 
@@ -507,6 +521,14 @@ footer span {
     border-bottom: 1px solid var(--dark-grey);
 }
 
+.task-right-side i {
+    transition: 0.3s;
+}
+
+.task-right-side i:hover {
+    font-size: 1.2rem;
+}
+
 .task-div {
     margin-left: 300px;
     justify-content: space-between;
@@ -514,6 +536,10 @@ footer span {
     padding: 20px 10px 20px 20px;
     color: var(--dark-grey);
     border-bottom: 1px solid var(--light-grey);
+}
+
+.task-div:hover {
+    background-color: var(--light-grey);
 }
 
 .task-left-side {
