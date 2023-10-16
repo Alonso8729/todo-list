@@ -22,6 +22,7 @@ const tasks = (() => {
     }
 
     function deleteTask(projectIndex, taskIndex) {
+        //console.log(projectIndex, taskIndex);
         projects.projectsList[projectIndex].tasks.splice(taskIndex, 1);
         dom.showTasks('all');
     }

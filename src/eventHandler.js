@@ -12,7 +12,6 @@ const eventHandler = (() => {
             const { target } = event;
             const selectedLink = document.querySelector('.selected-link')
             const modalDeleteProjectText = document.querySelector('.delete-project-content');
-
             //const modalTitle = document.querySelector('.modal-title');
             const linkIndex = parseInt(target.getAttribute('data-link-index'), 10);
             //Style selected link
@@ -80,11 +79,14 @@ const eventHandler = (() => {
                 }
                 else if (target.textContent === 'Delete') {
                     //DELETE PROJECT
-                    projectIndex = parseInt(selectedLink.getAttribute('data-link-index'), 10);
                     if (!(modalDeleteProjectText.classList.contains('hide'))) {
+                        projectIndex = parseInt(selectedLink.getAttribute('data-link-index'), 10);
                         dom.validateModal('delete', projectIndex, '', selectedLink);
                         dom.showMainTitle(0);
                         dom.getTasks('all');
+                    }
+                    else {
+                        dom.validateModal('delete', projectIndex, taskIndex, selectedLink);
                     }
                 }
                 else if (target.textContent === 'Edit') {

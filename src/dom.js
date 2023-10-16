@@ -1,6 +1,6 @@
 import { format, parseISO, differenceInDays } from 'date-fns';
 import projects from './projects.js';
-
+import tasks from './tasks.js';
 
 const dom = (() => {
     //variable declaration and assignment
@@ -314,7 +314,6 @@ const dom = (() => {
         }
         else if (modalStatus === 'close') {
             modal.classList.add('hide');
-
         }
 
 
@@ -322,6 +321,11 @@ const dom = (() => {
 
     function validateModal(action, projectIndex, taskIndex, currentLink) {
         const allMenuLink = document.querySelector('.link:first-child');
+        let menuTitle;
+        //GET MENU TITLE
+        if (currentLink.classList.contains('menu-element')) {
+            menuTitle = currentLink.getAttribute('data-title');
+        }
 
         if (!(form.classList.contains('hide')) && formTitle.value === "") {
             modalTitleError.classList.remove('hide');
@@ -340,6 +344,11 @@ const dom = (() => {
                 projects.deleteProject(projectIndex);
                 addTaskBtn.classList.add('hide');
                 selectLink(allMenuLink, projectIndex);
+            }
+            //DELETE TASK
+            else {
+                tasks.deleteTask(projectIndex, taskIndex);
+                getTasks(menuTitle, projectIndex)
             }
         }
         else if (action === 'edit') {
@@ -390,6 +399,8 @@ const dom = (() => {
                 target.parentElement.classList.add('selected-link');
             }
         }
+
+
 
         if (target.classList.contains('project-element')) {
             addTaskBtn.classList.remove('hide');
