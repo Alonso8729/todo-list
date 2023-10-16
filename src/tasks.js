@@ -15,25 +15,25 @@ const tasks = (() => {
         }
     }
 
-    function addTask(title, description, date, priority, projectIndex, taskIndex) {
-        const task = new Task(title, description, date, priority, projectIndex, taskIndex);
+    function addTask(title, description, date, priority, projectIndex) {
+        const task = new Task(title, description, date, priority, projectIndex);
         projects.projectsList[projectIndex].tasks.push(task);
         dom.showTasks();
     }
 
     function deleteTask(projectIndex, taskIndex) {
-        //console.log(projectIndex, taskIndex);
         projects.projectsList[projectIndex].tasks.splice(taskIndex, 1);
         dom.showTasks('all');
     }
 
     function editTask(title, description, date, priority, projectIndex, taskIndex) {
-        projects.projectsList[projectIndex].task[taskIndex].title = title;
-        projects.projectsList[projectIndex].task[taskIndex].description = description;
-        projects.projectsList[projectIndex].task[taskIndex].date = date;
-        projects.projectsList[projectIndex].task[taskIndex].priority = priority;
+        projects.projectsList[projectIndex].tasks[taskIndex].title = title;
+        projects.projectsList[projectIndex].tasks[taskIndex].description = description;
+        projects.projectsList[projectIndex].tasks[taskIndex].date = date;
+        projects.projectsList[projectIndex].tasks[taskIndex].priority = priority;
 
-        dom.showTasks('all');
+        dom.getTasks('project', projectIndex);
+
     }
 
     function toggleCompletedTask(selectedLink, projectIndex, taskIndex) {
