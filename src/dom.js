@@ -259,8 +259,9 @@ const dom = (() => {
         //const allProjectTitles = document.querySelectorAll('.project-link-title');
         const strongProjectTitle = document.querySelector('.strong-project-title');
         const strongTaskTitle = document.querySelector('.strong-task-title');
+        const modalTaskDiv = document.querySelector('.modal-task-div');
 
-        //restart classes
+        //Hide and restart elements' functions
         confirmBtn.className = 'confirm-btn';
         modalHeader.className = 'modal-header'
         cancelBtn.className = 'cancel-btn';
@@ -269,6 +270,7 @@ const dom = (() => {
         modalTitleError.classList.add('hide');
         modalDeleteProjectText.classList.add('hide');
         modalDeleteTaskText.classList.add('hide');
+        modalTaskDiv.classList.add('hide');
 
         if (modalStatus === 'show') {
             modal.classList.remove('hide');
@@ -279,10 +281,14 @@ const dom = (() => {
                 confirmBtn.textContent = "Add";
                 confirmBtn.classList.add('add-btn', 'pointer');
                 cancelBtn.classList.add('cancel-add', 'pointer');
-                //adding a project
-                if (modalTitle === "Add Project") {
-                    modalMainTitle.textContent = modalTitle;
+                modalMainTitle.textContent = modalTitle;
+
+                //Adding a Task
+                if (modalTitle === "Add Task") {
+                    modalTaskDiv.classList.remove('hide');
                 }
+
+
             }
             else if (modalFunction === 'delete') {
                 //adding classes that for both deleting a task and project
