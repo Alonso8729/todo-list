@@ -19,7 +19,8 @@ const dom = (() => {
     const modalDeleteTaskText = document.querySelector('.delete-task-content');
     const modalTaskDiv = document.querySelector('.modal-task-div');
     const taskPriority = document.querySelector('.form-select');
-
+    const taskDescription = document.getElementById('task-desc');
+    const dueDate = document.getElementById('due-date');
 
 
     function showProjects() {
@@ -319,7 +320,14 @@ const dom = (() => {
                 modalMainTitle.textContent = modalTitle;
                 if (modalTitle === 'Edit Task') {
                     modalTaskDiv.classList.remove('hide')
+                    // Pre-fill the input box when editing a task
+                    formTitle.value = projects.projectsList[projectIndex].tasks[taskIndex].title;
+                    taskDescription.value = projects.projectsList[projectIndex].tasks[taskIndex].description;
+                    dueDate.value = projects.projectsList[projectIndex].tasks[taskIndex].date;
+                    taskPriority.value = projects.projectsList[projectIndex].tasks[taskIndex].priority;
                 }
+                // Pre-fill the input box when editing a project
+
             }
         }
         else if (modalStatus === 'close') {
@@ -329,8 +337,6 @@ const dom = (() => {
 
     function validateModal(action, projectIndex, taskIndex, currentLink) {
         const allMenuLink = document.querySelector('.link:first-child');
-        const taskDescription = document.getElementById('task-desc');
-        const dueDate = document.getElementById('due-date');
 
         let date;
         let description;
@@ -358,13 +364,13 @@ const dom = (() => {
             //ADD TASK
             else {
                 //GET PRIORITY VALUE
-                if (taskPriority.value === '1') {
+                if (taskPriority.value === 'low') {
                     priority = 'low';
                 }
-                else if (taskPriority.value === '2') {
+                else if (taskPriority.value === 'medium') {
                     priority = 'medium';
                 }
-                else if (taskPriority.value === '3') {
+                else if (taskPriority.value === 'high') {
                     priority = 'high';
                 }
                 else {
@@ -400,13 +406,13 @@ const dom = (() => {
             //EDIT TASK
             else {
                 //GET PRIORITY VALUE
-                if (taskPriority.value === '1') {
+                if (taskPriority.value === 'low') {
                     priority = 'low';
                 }
-                else if (taskPriority.value === '2') {
+                else if (taskPriority.value === 'medium') {
                     priority = 'medium';
                 }
-                else if (taskPriority.value === '3') {
+                else if (taskPriority.value === 'high') {
                     priority = 'high';
                 }
                 else {
