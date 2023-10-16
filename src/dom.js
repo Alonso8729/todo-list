@@ -3,7 +3,7 @@ import projects from './projects.js';
 import tasks from './tasks.js';
 
 const dom = (() => {
-    //variable declaration and assignment
+    //Variable declaration and assignment
     const mainTitleText = document.querySelector('.main-title-text');
     const mainTitleIcon = document.querySelector('.main-title-icon');
     const addTaskBtn = document.getElementById('add-task');
@@ -17,6 +17,10 @@ const dom = (() => {
     const formTitle = document.querySelector('.form-title');
     const modalDeleteProjectText = document.querySelector('.delete-project-content');
     const modalDeleteTaskText = document.querySelector('.delete-task-content');
+    const modalTaskDiv = document.querySelector('.modal-task-div');
+    const taskPriority = document.querySelector('.form-select');
+
+
 
     function showProjects() {
         const projectCounter = document.getElementById('projects-counter');
@@ -259,7 +263,6 @@ const dom = (() => {
         //const allProjectTitles = document.querySelectorAll('.project-link-title');
         const strongProjectTitle = document.querySelector('.strong-project-title');
         const strongTaskTitle = document.querySelector('.strong-task-title');
-        const modalTaskDiv = document.querySelector('.modal-task-div');
 
         //Hide and restart elements' functions
         confirmBtn.className = 'confirm-btn';
@@ -321,12 +324,16 @@ const dom = (() => {
         else if (modalStatus === 'close') {
             modal.classList.add('hide');
         }
-
-
     }
 
     function validateModal(action, projectIndex, taskIndex, currentLink) {
         const allMenuLink = document.querySelector('.link:first-child');
+        const taskDescription = document.getElementById('task-desc');
+        const dueDate = document.getElementById('due-date');
+
+        let date;
+        let description;
+        let priority;
         let menuTitle;
         //GET MENU TITLE
         if (currentLink.classList.contains('menu-element')) {
@@ -337,12 +344,37 @@ const dom = (() => {
             modalTitleError.classList.remove('hide');
         }
         else if (formTitle.value !== "" && action === 'add') {
-            projects.addProject(formTitle.value);
-            //select new added project
-            const newProject = projectList.lastChild;
-            const newProjectIndex = projectList.lastChild.getAttribute('data-link-index');
-            selectLink(newProject, newProjectIndex);
-            changeMainTitle(newProject, newProjectIndex);
+            //ADD PROJECT
+            if ((modalTaskDiv.classList.contains('hide'))) {
+                projects.addProject(formTitle.value);
+                //select new added project
+                const newProject = projectList.lastChild;
+                const newProjectIndex = projectList.lastChild.getAttribute('data-link-index');
+                selectLink(newProject, newProjectIndex);
+                changeMainTitle(newProject, newProjectIndex);
+            }
+            //ADD TASK
+            else {
+                //GET PRIORITY VALUE
+                if (taskPriority.value === '1') {
+                    priority = 'low';
+                }
+                else if (taskPriority.value === '2') {
+                    priority = 'medium';
+                }
+                else if (taskPriority.value === '3') {
+                    priority = 'high';
+                }
+                else {
+                    priority = '';
+                }
+                //GET DESCRIPTION
+                description = taskDescription.value === '' ? '' : taskDescription.value;
+                //GET DATE
+                date = dueDate.value === '' ? '' : dueDate.value;
+
+                tasks.addTask(formTitle.value, description, date, priority, projectIndex);
+            }
         }
         else if (action === 'delete') {
             //DELETE PROJECT

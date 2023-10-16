@@ -12,6 +12,7 @@ const eventHandler = (() => {
             const { target } = event;
             const selectedLink = document.querySelector('.selected-link')
             const modalDeleteProjectText = document.querySelector('.delete-project-content');
+            const modalTaskDiv = document.querySelector('.modal-task-div');
             //const modalTitle = document.querySelector('.modal-title');
             const linkIndex = parseInt(target.getAttribute('data-link-index'), 10);
             //Style selected link
@@ -63,10 +64,11 @@ const eventHandler = (() => {
             if (target.classList.contains('cancel-btn') || target.classList.contains('fa-xmark')) {
                 dom.handleModal('close')
             }
-            //Clicked on task element, change completed status
+            //Assign project and task index values to variables when clicking task element
             if (target.classList.contains('task-element')) {
                 projectIndex = parseInt(target.getAttribute('data-project-index'));
                 taskIndex = parseInt(target.getAttribute('data-task-index'));
+                //Activate toggle effect when clicking on a task
                 tasks.toggleCompletedTask(selectedLink, projectIndex, taskIndex)
             }
             //Validate Form
@@ -75,7 +77,7 @@ const eventHandler = (() => {
                 if (target.textContent === 'Add') {
                     projectIndex = parseInt(selectedLink.getAttribute('data-link-index'), 10);
                     dom.validateModal('add', projectIndex, '', selectedLink);
-                    //dom.handleModal('close');
+                    dom.getTasks('project', projectIndex);
                 }
                 else if (target.textContent === 'Delete') {
                     //DELETE PROJECT
@@ -85,6 +87,7 @@ const eventHandler = (() => {
                         dom.showMainTitle(0);
                         dom.getTasks('all');
                     }
+                    //DELETE TASK
                     else {
                         dom.validateModal('delete', projectIndex, taskIndex, selectedLink);
                     }
