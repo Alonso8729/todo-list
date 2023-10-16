@@ -46,14 +46,16 @@ const eventHandler = (() => {
             if (target.classList.contains('task-icon')) {
                 projectIndex = parseInt(target.getAttribute('data-project-index'), 10);
                 taskIndex = parseInt(target.getAttribute('data-task-index'), 10);
-                //EDIT MODAL
+                //EDIT TASK MODAL
                 if (target.classList.contains('fa-pen-to-square')) {
                     dom.handleModal('show', 'Edit Task', 'edit', projectIndex, taskIndex);
                 }
+                //DELETE TASK MODAL
                 else if (target.classList.contains('fa-trash-can')) {
                     dom.handleModal('show', 'Delete Task', 'delete', projectIndex, taskIndex);
 
                 }
+                //TASK INFO MODAL
                 else if (target.classList.contains('fa-circle-info')) {
                     dom.handleModal('show', 'Task Info', 'info', projectIndex, taskIndex);
                 }
@@ -93,9 +95,15 @@ const eventHandler = (() => {
                     }
                 }
                 else if (target.textContent === 'Edit') {
-                    projectIndex = parseInt(selectedLink.getAttribute('data-link-index'), 10);
-                    dom.validateModal('edit', projectIndex, "", selectedLink);
-                    dom.handleModal('close');
+                    //EDIT PROJECT
+                    if (modalTaskDiv.classList.contains('hide')) {
+                        projectIndex = parseInt(selectedLink.getAttribute('data-link-index'), 10);
+                        dom.validateModal('edit', projectIndex, "", selectedLink);
+                    }
+                    //EDIT TASK
+                    else {
+                        dom.validateModal('edit', projectIndex, taskIndex, selectedLink);
+                    }
                 }
             }
         })

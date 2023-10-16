@@ -316,8 +316,9 @@ const dom = (() => {
                 confirmBtn.textContent = "Edit";
                 confirmBtn.classList.add('add-btn', 'pointer');
                 cancelBtn.classList.add('cancel-add', 'pointer');
-                if (modalTitle === 'Edit Project') {
-                    modalMainTitle.textContent = modalTitle;
+                modalMainTitle.textContent = modalTitle;
+                if (modalTitle === 'Edit Task') {
+                    modalTaskDiv.classList.remove('hide')
                 }
             }
         }
@@ -335,6 +336,7 @@ const dom = (() => {
         let description;
         let priority;
         let menuTitle;
+
         //GET MENU TITLE
         if (currentLink.classList.contains('menu-element')) {
             menuTitle = currentLink.getAttribute('data-title');
@@ -394,6 +396,28 @@ const dom = (() => {
             if (taskIndex === '') {
                 projects.editProject(projectIndex, formTitle.value, currentLink);
                 changeMainTitle(currentLink, projectIndex);
+            }
+            //EDIT TASK
+            else {
+                //GET PRIORITY VALUE
+                if (taskPriority.value === '1') {
+                    priority = 'low';
+                }
+                else if (taskPriority.value === '2') {
+                    priority = 'medium';
+                }
+                else if (taskPriority.value === '3') {
+                    priority = 'high';
+                }
+                else {
+                    priority = '';
+                }
+                //GET DESCRIPTION
+                description = taskDescription.value === '' ? '' : taskDescription.value;
+                //GET DATE
+                date = dueDate.value === '' ? '' : dueDate.value;
+
+                tasks.editTask(formTitle.value, description, date, priority, projectIndex, taskIndex);
             }
         }
 
