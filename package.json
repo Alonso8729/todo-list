@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages --dist 'dist' --branch 'release'",
+    "YourScriptName": "git subtree push --prefix dist origin gh-pages"
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +15,7 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-    "date-fns": "^2.30.0"
+    "date-fns": "^2.30.0",
+    "gh-pages": "^6.0.0"
   }
 }
