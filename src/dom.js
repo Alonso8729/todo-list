@@ -15,7 +15,7 @@ const dom = (() => {
     const modalTitleError = document.querySelector('.empty-input-error');
     const form = document.querySelector('.form');
     const formTitle = document.querySelector('.form-title');
-    //const formInput = document.querySelector('.form-input');
+    const formInput = document.querySelector('.form-input');
     const modalDeleteProjectText = document.querySelector('.delete-project-content');
     const modalDeleteTaskText = document.querySelector('.delete-task-content');
     const modalTaskDiv = document.querySelector('.modal-task-div');
@@ -357,6 +357,11 @@ const dom = (() => {
                     taskDescription.value = projects.projectsList[projectIndex].tasks[taskIndex].description;
                     dueDate.value = projects.projectsList[projectIndex].tasks[taskIndex].date;
                     taskPriority.value = projects.projectsList[projectIndex].tasks[taskIndex].priority;
+                }
+                else {
+                    const selectedLink = document.querySelector('.selected-link')
+                    projectIndex = parseInt(selectedLink.getAttribute('data-link-index'), 10);
+                    formInput.value = projects.projectsList[projectIndex].title;
                 }
 
             }
