@@ -15,6 +15,7 @@ const dom = (() => {
     const modalTitleError = document.querySelector('.empty-input-error');
     const form = document.querySelector('.form');
     const formTitle = document.querySelector('.form-title');
+    const formInput = document.querySelector('.form-input');
     const modalDeleteProjectText = document.querySelector('.delete-project-content');
     const modalDeleteTaskText = document.querySelector('.delete-task-content');
     const modalTaskDiv = document.querySelector('.modal-task-div');
@@ -204,6 +205,8 @@ const dom = (() => {
                 trashIcon.setAttribute('data-task-index', j);
                 infoIcon.setAttribute('data-project-index', i);
                 infoIcon.setAttribute('data-task-index', j);
+                circleIcon.setAttribute('data-project-index', i);
+                circleIcon.setAttribute('data-task-index', j);
 
                 //Append elements
                 taskLeftDiv.appendChild(circleIcon);
@@ -291,8 +294,6 @@ const dom = (() => {
                 if (modalTitle === "Add Task") {
                     modalTaskDiv.classList.remove('hide');
                 }
-
-
             }
             else if (modalFunction === 'delete') {
                 //adding classes that for both deleting a task and project
@@ -326,7 +327,6 @@ const dom = (() => {
                     dueDate.value = projects.projectsList[projectIndex].tasks[taskIndex].date;
                     taskPriority.value = projects.projectsList[projectIndex].tasks[taskIndex].priority;
                 }
-                // Pre-fill the input box when editing a project
 
             }
         }
