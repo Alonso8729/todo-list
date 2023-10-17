@@ -51,12 +51,20 @@ const dom = (() => {
     }
 
     function toggleMenu() {
+        const toggleIcon = document.getElementById('toggleButton');
 
         if (sidebar.classList.contains('hide-sidebar')) {
             sidebar.classList.remove('hide-sidebar');
+            main.classList.add('expand-main');
+            main.classList.remove('contract-main');
+            toggleIcon.className = 'pointer fa-solid fa-xmark';
         }
-        else
-            sidebar.classList.remove('hide')
+        else {
+            sidebar.classList.add('hide-sidebar')
+            main.classList.add('contract-main');
+            main.classList.remove('expand-main');
+            toggleIcon.className = 'pointer fa-solid fa-bars';
+        }
     }
 
 

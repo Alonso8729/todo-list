@@ -15,6 +15,13 @@ const eventHandler = (() => {
             const modalTaskDiv = document.querySelector('.modal-task-div');
             //const modalTitle = document.querySelector('.modal-title');
             const linkIndex = parseInt(target.getAttribute('data-link-index'), 10);
+
+            //Toggle menu
+            if (target.classList.contains('toggle-div') || target.getAttribute('id') === 'toggleButton') {
+                dom.toggleMenu();
+            }
+
+
             //Style selected link
             if (target.classList.contains('select')) {
                 dom.selectLink(target, linkIndex);
