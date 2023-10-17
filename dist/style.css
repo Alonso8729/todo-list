@@ -104,6 +104,7 @@ select {
     width: 300px;
     padding: 2rem 1rem;
     font-size: 1.2rem;
+    overflow: auto;
 }
 
 #sidebar a {
@@ -169,6 +170,7 @@ link,
 
 .nav-projects {
     color: var(--dark-grey);
+    margin-top: 70px;
 }
 
 .tooltip-text {
@@ -577,6 +579,7 @@ form {
     padding: 20px 10px 20px 20px;
     color: var(--dark-grey);
     border-bottom: 1px solid var(--light-grey);
+    overflow: auto;
 }
 
 .task-div:hover {
