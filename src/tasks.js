@@ -26,14 +26,16 @@ const tasks = (() => {
         dom.showTasks('all');
     }
 
-    function editTask(title, description, date, priority, projectIndex, taskIndex) {
+    function editTask(title, description, date, priority, projectIndex, taskIndex, selectedLink) {
         projects.projectsList[projectIndex].tasks[taskIndex].title = title;
         projects.projectsList[projectIndex].tasks[taskIndex].description = description;
         projects.projectsList[projectIndex].tasks[taskIndex].date = date;
         projects.projectsList[projectIndex].tasks[taskIndex].priority = priority;
 
-        dom.getTasks('project', projectIndex);
-
+        if (selectedLink.classList.contains('menu-element'))
+            dom.getTasks(projectIndex);
+        else
+            dom.getTasks('project', projectIndex);
     }
 
     function toggleCompletedTask(selectedLink, projectIndex, taskIndex) {
