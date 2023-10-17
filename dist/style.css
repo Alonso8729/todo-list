@@ -92,6 +92,33 @@ select {
     padding: 1.5rem 2rem;
     color: white;
     font-size: 1.8rem;
+    display: flex;
+    justify-content: baseline;
+    gap: 3rem;
+}
+
+/*TOGGLE*/
+
+.expand-main {
+    margin-left: 0 !important;
+}
+
+.contract-main {
+    margin-left: 300px !important;
+}
+
+.hide-sidebar {
+    transform: translateX(-300px);
+    -webkit-transform: translateX(-300px);
+}
+
+.show-sidebar {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+}
+
+.inactive-main {
+    opacity: 0.15;
 }
 
 
@@ -105,6 +132,7 @@ select {
     padding: 2rem 1rem;
     font-size: 1.2rem;
     overflow: auto;
+    transition: 0.3s;
 }
 
 #sidebar a {
@@ -139,6 +167,7 @@ link,
     padding: 8px 10px;
     border-radius: 5px;
     border: 1px solid transparent;
+    transition: 0.3s;
 }
 
 .link:hover {
@@ -540,7 +569,6 @@ form {
     padding: 1.5rem;
     color: var(--dark-grey);
     align-items: center;
-
     gap: 10px;
 }
 
@@ -554,14 +582,18 @@ form {
 }
 
 .tasks-container {
-    margin: auto;
     padding: 1rem;
-    max-width: 1000px;
     justify-content: space-between;
     font-size: 1.3rem;
     color: var(--dark-grey);
     font-weight: 100;
     border-bottom: 1px solid var(--dark-grey);
+}
+
+.tasks-div {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px;
 }
 
 .task-right-side i {
@@ -573,13 +605,14 @@ form {
 }
 
 .task-div {
-    margin-left: 300px;
     justify-content: space-between;
-    max-width: 1000px;
     padding: 20px 10px 20px 20px;
+    display: flex;
     color: var(--dark-grey);
     border-bottom: 1px solid var(--light-grey);
     overflow: auto;
+    transition: 0.3s;
+
 }
 
 .task-div:hover {
@@ -601,4 +634,39 @@ form {
 
 .completed {
     text-decoration: line-through;
+}
+
+/*Media Queries*/
+@media (max-width: 1500px) {
+    .task-text {
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .task-title {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .toggle-menu {
+        display: block;
+    }
+
+    .task-title {
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 800px) {
+    .task-text {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 500px) {
+    .task-title {
+        max-width: 100px;
+    }
 }
