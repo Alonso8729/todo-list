@@ -4,6 +4,9 @@ import tasks from './tasks.js';
 
 const dom = (() => {
     //Variable declaration and assignment
+    const toggleDiv = document.querySelector('.toggle-div');
+    const sidebar = document.querySelector('.sidebar');
+    const main = document.querySelector('.main');
     const mainTitleText = document.querySelector('.main-title-text');
     const mainTitleIcon = document.querySelector('.main-title-icon');
     const addTaskBtn = document.getElementById('add-task');
@@ -23,6 +26,39 @@ const dom = (() => {
     const taskDescription = document.getElementById('task-desc');
     const dueDate = document.getElementById('due-date');
     const infoModalDiv = document.querySelector('.task-info-div');
+
+
+    function responsiveMenu() {
+        if (window.innerWidth <= 1000) {
+            toggleDiv.classList.remove('hide');
+            //HIDE SIDEBAR
+            sidebar.classList.remove('show-sidebar')
+            sidebar.classList.add('hide-sidebar');
+            //EXPAND MAIN
+            main.classList.remove('contract-main');
+            main.classList.add('expand-main');
+        }
+        else {
+            toggleDiv.classList.add('hide');
+            //SHOW SIDEBAR
+            sidebar.classList.remove('hide-sidebar');
+            sidebar.classList.add('show-sidebar')
+
+            //CONTRACT MAIN
+            main.classList.add('contract-main');
+            main.classList.remove('expand-main');
+        }
+    }
+
+    function toggleMenu() {
+
+        if (sidebar.classList.contains('hide-sidebar')) {
+            sidebar.classList.remove('hide-sidebar');
+        }
+        else
+            sidebar.classList.remove('hide')
+    }
+
 
     function showProjects() {
         const projectCounter = document.getElementById('projects-counter');
@@ -522,7 +558,7 @@ const dom = (() => {
     }
 
     return {
-        showProjects, showMainTitle, handleModal, showTasks, selectLink, changeMainTitle, getTasks, validateModal
+        showProjects, showMainTitle, handleModal, showTasks, selectLink, changeMainTitle, getTasks, validateModal, toggleMenu, responsiveMenu
     };
 })();
 

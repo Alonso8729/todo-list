@@ -108,9 +108,14 @@ const eventHandler = (() => {
             }
         })
     }
-    return {
-        clickListener
+
+    function resizeWindow() {
+        window.addEventListener('resize', dom.responsiveMenu);
     }
+
+    return {
+        clickListener, resizeWindow
+    };
 
 })();
 
