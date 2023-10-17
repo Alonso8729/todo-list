@@ -434,6 +434,26 @@ form {
     border: 1px solid var(--dark-teal);
 }
 
+/*TASK INFO*/
+.info-div,
+.task-info-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-div {
+    gap: 1rem;
+    border-bottom: 1px solid var(--light-grey);
+    margin-top: 10px;
+    justify-items: center;
+    color: var(--dark-grey);
+}
+
+.info-div:last-child {
+    border: none;
+}
+
+
 /*MODALS BUTTONS*/
 .modal-buttons {
     border-top: 1px solid var(--light-grey);
