@@ -20,6 +20,13 @@
 <body>
     <!--Header-->
     <header class="mixed-teal header">
+        <!--TOGGLE BUTTON-->
+        <div class="toggle-div hide">
+            <i id="toggleButton" class="fa-solid fa-bars pointer toggle-btn"></i>
+        </div>
+
+
+        <!--LOGO-->
         <p class="logo">
             <i class="fa-regular fa-calendar-check"></i>
             CheckMate
@@ -27,7 +34,7 @@
     </header>
 
     <!--NAV-->
-    <nav id="sidebar">
+    <nav id="sidebar" class="sidebar">
         <!--NAV-MENU-->
         <div class="nav-menu-div">
             <a href="#" class="link nav-menu-link pointer flex select menu-element selected-link" data-link-index="0"
@@ -91,7 +98,7 @@
         </footer>
     </nav>
 
-    <main id="main">
+    <main id="main" class="main">
         <!--MAIN TITLE-->
         <div class="main-title-ctn flex">
             <i class="main-title-icon"></i>
@@ -99,15 +106,17 @@
         </div>
 
         <!--TASKS-->
-        <div class="tasks-container flex">
-            <p>Tasks (<span id="tasks-counter"></span>)</p>
-            <i id="add-task" class="fa-solid fa-circle-plus add-task-icon plus-icon hide">
-                <span class="add-project tooltip-text">Add New Task</span>
-            </i>
-        </div>
+        <div class="tasks-div">
+            <div class="tasks-container flex">
+                <p>Tasks (<span id="tasks-counter"></span>)</p>
+                <i id="add-task" class="fa-solid fa-circle-plus add-task-icon plus-icon hide">
+                    <span class="add-project tooltip-text">Add New Task</span>
+                </i>
+            </div>
 
-        <div class="tasks-list">
+            <div class="tasks-list">
 
+            </div>
         </div>
     </main>
 
@@ -157,6 +166,7 @@
                             required>
                         <p class="empty-input-error hide">Please fill out this field.</p>
                     </div>
+
                     <div class="modal-task-div hide">
                         <div class="task-description-div flex">
                             <label for="task-desc">Description</label>
