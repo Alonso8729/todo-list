@@ -435,24 +435,44 @@ form {
 }
 
 /*TASK INFO*/
-.info-div,
+
 .task-info-div {
     display: flex;
     flex-direction: column;
 }
 
+.info-title-div {
+    padding-top: 0;
+}
+
 .info-div {
-    gap: 1rem;
     border-bottom: 1px solid var(--light-grey);
-    margin-top: 10px;
-    justify-items: center;
     color: var(--dark-grey);
+    display: flex;
+    padding: 1rem 1rem 1rem 7px;
+}
+
+.info-desc-text {
+    overflow-y: scroll;
+    width: 280px;
+    height: 100px;
+}
+
+.info-desc-label {
+    padding-right: 30px;
+}
+
+.info-title-label,
+.info-desc-label,
+.info-date-label,
+.info-priority-label,
+.info-project-label {
+    width: 100px;
 }
 
 .info-div:last-child {
     border: none;
 }
-
 
 /*MODALS BUTTONS*/
 .modal-buttons {
