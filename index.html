@@ -127,6 +127,29 @@
                             class="strong-task-title"></span></strong>?<br><br>
                     This action cannot be undone</p>
 
+                <div class="task-info-div hide">
+                    <div class="info-title-div info-div">
+                        <p class="info-title-label"><strong>Title:</strong></p>
+                        <p class="info-title-text"></p>
+                    </div>
+                    <div class="info-desc-div info-div">
+                        <p class="info-desc-label"><strong>Description:</strong></p>
+                        <p class="info-desc-text"></p>
+                    </div>
+                    <div class="info-date-div info-div">
+                        <p class="info-date-label"><strong>Due Date:</strong></p>
+                        <p class="info-date-text"></p>
+                    </div>
+                    <div class="info-priority-div info-div">
+                        <p class="info-priority-label"><strong>Priority:</strong></p>
+                        <p class="info-priority-text"></p>
+                    </div>
+                    <div class="info-project-div info-div">
+                        <p class="info-project-label"><strong>Project:</strong></p>
+                        <p class="info-project-text"></p>
+                    </div>
+                </div>
+
                 <form id="form" method="post" class="form hide">
                     <div class="modal-title-div flex">
                         <label for="form-title">Title<span id="title-star">*</span></label>
@@ -136,11 +159,11 @@
                     </div>
                     <div class="modal-task-div hide">
                         <div class="task-description-div flex">
-                            <label for="description">Description</label>
+                            <label for="task-desc">Description</label>
                             <textarea id="task-desc" cols="30" rows="3"></textarea>
                         </div>
                         <div class="task-due-date-div flex">
-                            <label for="date">Due Date</label>
+                            <label for="due-date">Due Date</label>
                             <input type="date" id="due-date">
                         </div>
                         <div class="task-priority">
