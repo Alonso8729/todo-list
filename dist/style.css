@@ -118,7 +118,7 @@ select {
 }
 
 .inactive-main {
-    opacity: 0.15;
+    opacity: 0.05;
 }
 
 
@@ -188,6 +188,7 @@ link,
     justify-content: space-between;
     padding: 10px 20px;
     border-bottom: 1px solid var(--dark-grey);
+
 }
 
 .plus-icon {
@@ -262,6 +263,13 @@ link,
     border-radius: 5px;
     border: 1px solid transparent;
     background-color: var(--white);
+}
+
+.project-link-title {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 160px;
 }
 
 .left-project-div {
