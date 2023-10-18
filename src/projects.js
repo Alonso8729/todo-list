@@ -6,7 +6,7 @@ const projects = (() => {
     if (localStorage.getItem('projects') === null) {
         projectsList = [
             {
-                title: 'Coding',
+                title: 'First Example Project',
                 tasks: [{
                     title: 'Finish tic-tac-toe project',
                     description: 'finish main container positioning and push all commits',
@@ -18,7 +18,7 @@ const projects = (() => {
                 }]
             },
             {
-                title: 'Cleaning',
+                title: 'Second Example Project',
                 tasks: [{
                     title: 'Cleaning my room',
                     description: 'Remove any item that is not belong to the room, and use vacuum cleaner to clean up the carpet',
