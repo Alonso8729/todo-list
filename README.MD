@@ -14,6 +14,7 @@ This is a Todo List project built using vanilla JavaScript. The project allows u
 - Git and GitHub
 - Webpack Module Bundler
 - Linux terminal
+- Opinionated Code Formatter
 
 ## Third party libraries
 - [date-fns Library](https://date-fns.org/)
